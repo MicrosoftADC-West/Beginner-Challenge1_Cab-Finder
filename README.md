@@ -59,28 +59,37 @@ A "Ride Services" table with the following fields:
 - priceperkm
 
 **Challenge 1:**
+
 You are given a dataset containing a list of route/locations data, booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the csv data provided.
 
 Pre-requisites:
+
 Write a helper method that takes each of the csv data provided and parses them into the respective data structures that will help you solve the problem.
 
 Task 1:
+
 Write a method that takes in a list of routes, ride services and booked rides then calculate the cost of each ride(price) based on the distance covered and return a list containing the details of each ride and their corresponding prices.
 
 Hint: _Use Haversine formular to calculate the distance between the start coordinates and the destination coordinates._
+
 Task 2:
+
 Leveraging your approach in Task 1, Write a method that takes in a list of routes, ride services, booked rides and computes the best price, the method should return an object containing the name of the ride service and the best price.
 
 **Challenge 2:**
+
 You are given a dataset containing a list of route/locations data, booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the data format that best aligns with the database server you are most comfortable with.
 
 Pre-requisites:
+
 Using your preferred database server, migrate the provided data into your database.
 
 Task 1:
+
 Create a web user interface to implement application functionalities as stated above using your preferred tech stack.
 
 Task 2:
+
 Create a restful API with the below API contracts
 
 The API contracts for the Ride Price Aggregator service would include the following endpoints:
