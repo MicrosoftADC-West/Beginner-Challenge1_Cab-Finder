@@ -25,7 +25,7 @@ The user should be able to sort the prices by ride service, price, and estimated
 
 **Assumptions** :
 
-- There is a finite amount of available routes/location with indicated start coordinates and destination coordinates which is unique. For example, a user cannot book a ride in routes not represented in the locations database.
+- There is a finite amount of available routes/location with indicated start coordinates and destination coordinates which is unique. For example, a user cannot book a ride in routes not represented in the locations table/document.
 - Ride services only provides their price per kilometer, so to calculate the price
 - The distance in kilometer (KM) between two coordinates (long and lat) is assumed to be based on [Haversine formula - Wikipedia,](https://en.wikipedia.org/wiki/Haversine_formula)you are expected to write a helper function that calculates this distance. See [algorithm - Calculate distance between two latitude-longitude points? (Haversine formula) - Stack Overflow.](https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula)
 
