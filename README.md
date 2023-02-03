@@ -1,7 +1,5 @@
 # MSChallenge3
-# **ADC/NACOSS CHALLENGE**
-
-**Contoso Cheap Cab Finder**
+# **Contoso Cheap Cab Finder**
 
 **Duration** : 120 mins
 
