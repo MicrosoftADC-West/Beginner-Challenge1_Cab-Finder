@@ -1,4 +1,4 @@
-# MSChallenge3
+# Challenge Your Skills Learnathon
 # **Contoso Cheap Cab Finder**
 
 **Duration** : 120 mins
