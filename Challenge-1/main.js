@@ -30,7 +30,7 @@ function CalculateRidePrice(routeLists, rideServices) {
         ind++;
         rideInKmWithLocations.push({
             location: ind,
-            distance_in_km: getDistanceFromLatLonInKm(element.start_coord_lat, element.start_coord_long, element.destination_coord_lat, element.destination_coord_long).toFixed(3)
+            distance_in_km: GetDistanceFromLatLonInKM(element.start_coord_lat, element.start_coord_long, element.destination_coord_lat, element.destination_coord_long).toFixed(3)
         })
     }
 
@@ -60,13 +60,13 @@ function CalculatePricePerKM(element, rideInKmWithLocations, rideServices) {
 }
 
 // longnitude and latitude data function
-function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+function GetDistanceFromLatLonInKM(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
-    var dLon = deg2rad(lon2 - lon1);
+    var dLat = Deg2Rad(lat2 - lat1); // Deg2Rad below
+    var dLon = Deg2Rad(lon2 - lon1);
     var a =
         Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.cos(Deg2Rad(lat1)) * Math.cos(Deg2Rad(lat2)) *
         Math.sin(dLon / 2) * Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     var d = R * c; // Distance in km
@@ -77,7 +77,7 @@ function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
  * @param {float} deg 
  * @returns degree in radians
  */
-function deg2rad(deg) {
+function Deg2Rad(deg) {
     return deg * (Math.PI / 180);
 }
 
@@ -87,7 +87,7 @@ console.table(CalculateRidePrice(locationData, rideServicesData));
 
 // Task 2
 // check if array object is present
-function arrayAlreadyHasArray(arr, subarr) {
+function ArrayAlreadyHasArray(arr, subarr) {
     for (var i = 0; i < arr.length; i++) {
         let checker = false;
         for (var j = 0; j < arr[i].length; j++) {
@@ -106,7 +106,7 @@ function arrayAlreadyHasArray(arr, subarr) {
 }
 
 // for calculating location values for task 2
-function getLocationValues(locationId, ridesData) {
+function GetLocationValues(locationId, ridesData) {
     let allObjWithSameLocations = [];
     for (let element of ridesData) {
         if (element.location_id == locationId) {
@@ -133,10 +133,10 @@ function CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithP
     for (let element of ridesData) {
         ind++;
         let rideLocation = element.location_id;
-        let allObjsWithSameLocations = getLocationValues(rideLocation, ridesData);
+        let allObjsWithSameLocations = GetLocationValues(rideLocation, ridesData);
 
 
-        if (!arrayAlreadyHasArray(allSameLocationsArr, allObjsWithSameLocations)) {
+        if (!ArrayAlreadyHasArray(allSameLocationsArr, allObjsWithSameLocations)) {
             allSameLocationsArr.push(allObjsWithSameLocations);
         }
     }
