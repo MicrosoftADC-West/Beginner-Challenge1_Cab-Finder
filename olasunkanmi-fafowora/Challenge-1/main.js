@@ -7,9 +7,9 @@ async function getData(url) {
 }
 
 // Obtains data for each JSON file
-const locationData = await getData("../Data/JSON/locations.json");
-const ridesData = await getData("../Data/JSON/rides.json");
-const rideServicesData = await getData("../Data/JSON/rideServices.json");
+const locationData = await getData("../../Data/JSON/locations.json");
+const ridesData = await getData("../../Data/JSON/rides.json");
+const rideServicesData = await getData("../../Data/JSON/rideServices.json");
 
 // Array to store result of Challenge 1 - Task 1
 const rideWithPrices = [];
