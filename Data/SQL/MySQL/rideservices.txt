@@ -1,0 +1,18 @@
+--MySQL table creation script for RideServices table
+
+CREATE TABLE rideservice (
+ rideservice_id INT AUTO_INCREMENT PRIMARY KEY,
+ rideservice_name VARCHAR(100) NOT NULL,
+ priceperkm DECIMAL(10, 2) NOT NULL
+);
+
+--MySQL script for rideservices data
+
+INSERT INTO rideservice (rideservice_name, priceperkm)
+VALUES
+('Bolt', 45),
+('Uber', 50),
+('O''Ride', 35),
+('EasyTaxi', 42),
+('Gokada', 30),
+('Lagride', 55);
