@@ -1,0 +1,28 @@
+{
+  "name": "skillchallenge-cab-finder",
+  "version": "1.0.0",
+  "description": "**Duration** : 120 mins",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder/issues"
+  },
+  "homepage": "https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder#readme",
+  "dependencies": {
+    "convert-csv-to-json": "^1.5.0",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
