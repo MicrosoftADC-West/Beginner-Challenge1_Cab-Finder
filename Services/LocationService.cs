@@ -36,6 +36,8 @@ namespace CabFinder.Services
                 return new CustomResponse<Location>(ServiceResponses.BadRequest, "Location cannot be null");
             }
 
+            int lo = await ListAll().CountAsync();
+            location.location_id = ++lo;
             var result = await repository.AddAsync(location, token);
             if (result)
             {
