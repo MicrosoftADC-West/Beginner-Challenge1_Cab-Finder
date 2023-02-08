@@ -6,10 +6,11 @@
 
 **Difficulty level** : Beginner
 
-**How To Start Application**
-Run **npm run installmodules** to install all the required modules
-Then, once the modules have been onstalled, to run challenge 1, use the command npm run challenge1
-To run challenge 2, use npm run challenge2
+**How To Start Application** : Install all Modules then run the application
+
+**How To Install All Modules** : Run "npm run installmodules"
+
+**How To Run the Application** : To Run challenge 1, use "npm run challenge1" and to run challenge 2, use "npm run challenge2"
 
 **Prerequisite** : Knowledge of an IDE with the web development workload.
 
