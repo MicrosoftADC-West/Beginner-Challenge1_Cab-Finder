@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'app/ride/input/coords/coords.dart';
-import 'app/ride/input/flow.dart';
+import 'app/ride/ride.flow.dart';
+import 'app/ride/routes/routes.dart';
+import 'globals/app_values.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,12 +14,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Microsoft ADC Challenge',
+      title: AppValues.title,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
-      home: CoordinatesInputForm(flow: RideInputFlow()),
+      home: RouteSelection(flow: RideFlow()),
     );
   }
 }
