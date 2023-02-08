@@ -9,7 +9,7 @@
 * Open up your terminal
  * CD into challenge1Solution and run the below command
 
-```
- node test.js
-``` 
+    ```
+    node test.js
+    ``` 
 * You should see some info printed out in your terminal

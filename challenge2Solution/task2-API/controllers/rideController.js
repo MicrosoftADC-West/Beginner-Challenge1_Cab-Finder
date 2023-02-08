@@ -128,13 +128,6 @@ exports.createRide = catchAsync(async (req, res, next) => {
     nextRideId = lastRideCreated[0].ride_id + 1;
   }
 
-  console.log(
-    nextRideId,
-    location[0].location_id,
-    rideService[0].rideservice_id,
-    estimated_arrival_time
-  );
-  //   console.log(location, rideService);
   const rideToBeCreated = {
     ride_id: nextRideId,
     location_id: location[0].location_id,
