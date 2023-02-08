@@ -3,27 +3,45 @@ const catchAsync = require("../utils/catchAsync");
 const Ride = require("../models/rideModel");
 const Location = require("../models/locationModel");
 const RideService = require("../models/rideServiceModel");
+const ReShape = require("../utils/riderHelperMethods");
 
 exports.getAllRides = catchAsync(async (req, res, next) => {
   let rides;
   const { start_location, end_location } = req.query;
+
+  const startLocationArray = start_location.split(",");
+  const endLocationArray = end_location.split(",");
+
   if (start_location && end_location) {
-    const location = await Location.find({
-      start_coord_lat: Number(start_location[0]),
-      start_coord_long: Number(start_location[1]),
-      destination_coord_lat: Number(end_location[0]),
-      destination_coord_long: Number(end_location[1]),
+    const location = await Location.findOne({
+      $and: [
+        { start_coord_lat: Number(startLocationArray[0]) },
+        { start_coord_long: Number(startLocationArray[1]) },
+        { destination_coord_lat: Number(endLocationArray[0]) },
+        { destination_coord_long: Number(endLocationArray[1]) },
+      ],
     });
-    if (!location) {
+
+    if (!location || location.length === 0) {
       return next(new AppError("Please provide a valid location", 400));
     }
-    rides = await Ride.find({ location_id: location[0].location_id });
+    const ridesBefore = await Ride.find({
+      location_id: location.location_id,
+    })
+      .populate("service")
+      .populate("location");
+
+    rides = new ReShape(ridesBefore).refactorRides();
   } else {
-    rides = await Ride.find();
+    const ridesBefore = await Ride.find()
+      .populate("service")
+      .populate("location");
+    rides = new ReShape(ridesBefore).refactorRides();
   }
 
   res.status(200).json({
     status: "success",
+    results: rides.length,
     data: {
       rides,
     },
@@ -31,11 +49,6 @@ exports.getAllRides = catchAsync(async (req, res, next) => {
 });
 
 exports.createRide = catchAsync(async (req, res, next) => {
-  //     start_location (required): The starting location for the ride.
-  // end_location (required): The destination location for the ride.
-  // ride_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
-  // estimated_arrival_time (required): The estimated arrival time for the ride.
-
   const { start_location, end_location, ride_service, estimated_arrival_time } =
     req.body;
   if (
@@ -64,11 +77,6 @@ exports.createRide = catchAsync(async (req, res, next) => {
   if (estimated_arrival_time instanceof Date) {
     return next(new AppError("Please provide a valid date", 400));
   }
-
-  // "start_coord_long": 3.548056,
-  // "start_coord_lat": 6.462222,
-  // "destination_coord_long": 3.360833,
-  // "destination_coord_lat": 6.520833
 
   const location = await Location.find({
     start_coord_lat: Number(start_location[0]),

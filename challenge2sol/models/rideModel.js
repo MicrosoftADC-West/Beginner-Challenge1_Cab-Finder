@@ -9,19 +9,17 @@ const rideSchema = new mongoose.Schema(
     },
     location_id: {
       type: Number,
+      ref: "Location",
       required: [true, "ride must have a location_id"],
     },
     rideservice_id: {
       type: Number,
+      ref: "RideService",
       required: [true, "ride must have a rideservice_id"],
     },
     estimated_arrival_time: {
       type: Date,
       required: [true, "ride must have a estimated_arrival_time"],
-    },
-    price: {
-      type: Number,
-      ref: "RideService",
     },
   },
   {
@@ -30,13 +28,18 @@ const rideSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-rideSchema.pre(/^find/, function (next) {
-  this.populate({
-    path: "rideservice_id",
-    select: "price",
-  });
-  next();
+
+rideSchema.virtual("service", {
+  ref: "RideService",
+  foreignField: "rideservice_id",
+  localField: "rideservice_id",
 });
+rideSchema.virtual("location", {
+  ref: "Location",
+  foreignField: "location_id",
+  localField: "location_id",
+});
+
 const Ride = mongoose.model("Ride", rideSchema);
 
 module.exports = Ride;
