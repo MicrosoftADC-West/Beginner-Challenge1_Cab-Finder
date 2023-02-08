@@ -364,3 +364,7 @@ Response:
 - 404 Not Found: If the specified ride ID does not exist.
 - 500 Internal Server Error: If there is an error deleting the ride from the database.
 
+
+### Solution
+Swagger View  
+![swagger view](https://i.ibb.co/n0NGpvb/photo-2023-02-08-19-41-56.jpg)
