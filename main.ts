@@ -2,17 +2,17 @@ import {
     getPriceForEachRide,
     getBestRideForEachRoute, 
     RidePrice, 
-    convertLocations, 
-    convertRideServices, 
-    convertRides 
+    getLocations, 
+    getRideServices, 
+    getRides 
 } from "./src";
 
 
 
 async function main() {
-    const rides = convertRides();
-    const ridesServices = convertRideServices();
-    const locations = convertLocations();
+    const rides = getRides();
+    const ridesServices = getRideServices();
+    const locations = getLocations();
     const priceForEachRide: RidePrice[][] = getPriceForEachRide(locations,ridesServices,rides);
     const bestRideForEachRoute = getBestRideForEachRoute(locations,ridesServices,rides)
     

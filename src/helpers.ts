@@ -3,16 +3,16 @@
 import csv from "convert-csv-to-json";
 
 
-export const convertRides = () => {
+export const getRides = () => {
     return csv.fieldDelimiter(',').getJsonFromCsv('./Data/CSV/rides.csv');
 }
 
 
-export const convertLocations = () => {
+export const getLocations = () => {
     return csv.fieldDelimiter(',').getJsonFromCsv('./Data/CSV/locations.csv');
 }
 
-export const convertRideServices = () => {
+export const getRideServices = () => {
     return csv.fieldDelimiter(',').getJsonFromCsv('./Data/CSV/rideservices.csv');
 }
 
@@ -28,5 +28,5 @@ export const  haversine_distance = (lat1: number, lon1: number, lat2: number, lo
 }
 
 export const getDistanceInKm = () => {
-    
+
 }
