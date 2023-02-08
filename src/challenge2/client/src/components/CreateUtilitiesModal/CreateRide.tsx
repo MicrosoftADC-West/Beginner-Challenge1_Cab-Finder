@@ -4,6 +4,7 @@ import Header from "../header";
 import FormInput, { FormDropdown } from "../form/formInput";
 import FormButton from "../form/formButton";
 import reformatForReactSelect from "../../utils/reformatForReactSelect";
+import notify from "../../helpers/notify";
 import LocationService from "../../services/location-service";
 import RideServicesService from "../../services/rideServices-service";
 import RideService from "../../services/ride-service";
@@ -76,6 +77,21 @@ const CreateRide = ({ onClose }: { onClose: () => void }) => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    if (
+      !createRideRequestData.start_location.lat &&
+      !createRideRequestData.start_location.long &&
+      !createRideRequestData.end_location.lat &&
+      !createRideRequestData.end_location.long
+    ) {
+      notify("error", `LOCATION is not filled`);
+      return;
+    }
+    const validationResult = handleValidateData(createRideRequestData);
+
+    if (validationResult) {
+      notify("error", `${validationResult.toLocaleUpperCase()} is not filled`);
+      return;
+    }
     setRideCreating(true);
     try {
       const response = await ride.createNewRide(createRideRequestData);
@@ -86,6 +102,13 @@ const CreateRide = ({ onClose }: { onClose: () => void }) => {
     } catch (error) {
       console.log(error);
       setRideCreating(false);
+    }
+  };
+  const handleValidateData = (obj: CreateRideRequestDataType) => {
+    for (let key in obj) {
+      if (!obj[key as keyof CreateRideRequestDataType]) {
+        return key;
+      }
     }
   };
 

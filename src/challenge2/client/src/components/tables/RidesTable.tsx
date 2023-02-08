@@ -9,6 +9,7 @@ import Button from "../Button";
 import RideService from "../../services/ride-service";
 import RideServicesService from "../../services/rideServices-service";
 import reformatForReactSelect from "../../utils/reformatForReactSelect";
+import { TableSkeletonLoader } from "../skeletonLoaders/TableSkeletonLoader";
 
 type RideType = {
   ride_id: string;
@@ -19,6 +20,7 @@ type RideType = {
 
 function RidesTable() {
   const [rides, setRides] = useState<RideType[]>([]);
+  const [rideFetching, setRideFetching] = useState<boolean>(false);
   const [initialRideValues, setInitialRidesValues] = useState<RideType[]>([]);
   const [rideServices, setRideServices] = useState<any>([]);
   const [filterByKeyword, setFilterByKeyword] = useState<String>("");
@@ -31,12 +33,15 @@ function RidesTable() {
   const rideService = new RideServicesService();
 
   const getRides = async () => {
+    setRideFetching(true);
     try {
       const response = await service.getAllRides();
       setRides(response?.data);
       setInitialRidesValues(response?.data);
+      setRideFetching(false);
     } catch (error) {
       console.log(error);
+      setRideFetching(false);
     }
   };
   const getRideServices = async () => {
@@ -86,42 +91,56 @@ function RidesTable() {
         }
         initialState={initialRideValues}
       />
-      <table>
-        <thead>
-          <tr>
-            <th>Ride Id</th>
-            <th>Ride Route</th>
-            <th>Ride Service</th>
-            <th>Ride Arrival Time</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {rides.map((data) => (
-            <tr key={data.ride_id}>
-              <td>{data.ride_id}</td>
-              <td>{data.location_description}</td>
-              <td>{data.rideservice_name}</td>
-              <td>{`${data.estimated_arrival_time.slice(
-                0,
-                10
-              )} ${data.estimated_arrival_time.slice(11, 19)}`}</td>
-              <td>
-                <Button
-                  fullWidth
-                  content="Delete Ride"
-                  variant="contained"
-                  color="red"
-                  size="xs"
-                  onClick={() =>
-                    setDeleteRide({ status: true, id: data.ride_id })
-                  }
-                />
-              </td>
+
+      {rideFetching ? (
+        <TableSkeletonLoader
+          rowNo={20}
+          columnValues={[
+            "Ride Id",
+            "Ride Route",
+            "Ride Service",
+            "Ride Arrival Time",
+            "Action",
+          ]}
+        />
+      ) : (
+        <table>
+          <thead>
+            <tr>
+              <th>Ride Id</th>
+              <th>Ride Route</th>
+              <th>Ride Service</th>
+              <th>Ride Arrival Time</th>
+              <th>Action</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rides.map((data) => (
+              <tr key={data.ride_id}>
+                <td>{data.ride_id}</td>
+                <td>{data.location_description}</td>
+                <td>{data.rideservice_name}</td>
+                <td>{`${data.estimated_arrival_time.slice(
+                  0,
+                  10
+                )} ${data.estimated_arrival_time.slice(11, 19)}`}</td>
+                <td>
+                  <Button
+                    fullWidth
+                    content="Delete Ride"
+                    variant="contained"
+                    color="red"
+                    size="xs"
+                    onClick={() =>
+                      setDeleteRide({ status: true, id: data.ride_id })
+                    }
+                  />
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 }

@@ -50,7 +50,7 @@ export const createRide = (req: Request, res: Response) => {
   if (!start_location || !end_location || !ride_service || !arrival_time) {
     return res.status(404).json("Fill all details");
   }
-  console.log("hey");
+  console.log(ride_service);
   // Get the Location id for the selected Ride
   db.query(
     CREATE_RIDE_QUERY_1,
@@ -61,34 +61,17 @@ export const createRide = (req: Request, res: Response) => {
       parseFloat(end_location.lat),
     ],
     (error, locationResult: RowDataPacket[]) => {
-      console.log(locationResult);
       if (error) return res.json(error);
       if (locationResult) {
         db.query(
-          CREATE_RIDE_QUERY_2,
-          [ride_service],
-          (rideServiceError, rideServiceResult: RowDataPacket[]) => {
-            if (rideServiceError) return res.json(rideServiceError);
-            if (rideServiceResult) {
-              db.query(
-                CREATE_RIDE_QUERY_3,
-                [
-                  locationResult[0]?.location_id,
-                  rideServiceResult[0]?.rideservice_id,
-                  arrival_time,
-                ],
-                (createRideError, createRideResult: any) => {
-                  if (createRideError) return res.json(createRideError);
-                  return res.status(201).json(createRideResult?.insertId);
-                }
-              );
-            }
+          CREATE_RIDE_QUERY_3,
+          [locationResult[0]?.location_id, ride_service, arrival_time],
+          (createRideError, createRideResult: any) => {
+            if (createRideError) return res.json(createRideError);
+            return res.status(201).json(createRideResult?.insertId);
           }
         );
       }
-
-      // Get the Ride Service Id from the Db
-      // if (result.length) return res.status(200).json(result);
     }
   );
 };
