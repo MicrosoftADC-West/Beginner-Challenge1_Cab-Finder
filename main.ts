@@ -25,7 +25,7 @@ async function main() {
     // challenge 2
 
 
-    return { challenge1, challenge2: "finish this later"}
+    return { challenge1 }
 }
 
 main().then(console.log);
