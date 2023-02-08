@@ -5,7 +5,7 @@ import {
     getLocations, 
     getRideServices, 
     getRides 
-} from "./src/challenge1";
+} from "./src";
 
 
 
@@ -23,6 +23,9 @@ async function main() {
     }
 
     // challenge 2
+
+
+    return { challenge1, challenge2: "finish this later"}
 }
 
 main().then(console.log);
