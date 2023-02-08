@@ -10,17 +10,25 @@ dotenv.config();
 
 const locations = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, "..", "Data", "Data", "JSON", "locations.json")
+    path.join(__dirname, "..", "..", "Data", "Data", "JSON", "locations.json")
   )
 );
 const rides = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, "..", "Data", "Data", "JSON", "rides.json")
+    path.join(__dirname, "..", "..", "Data", "Data", "JSON", "rides.json")
   )
 );
 const rideServices = JSON.parse(
   fs.readFileSync(
-    path.join(__dirname, "..", "Data", "Data", "JSON", "rideservices.json")
+    path.join(
+      __dirname,
+      "..",
+      "..",
+      "Data",
+      "Data",
+      "JSON",
+      "rideservices.json"
+    )
   )
 );
 mongoose.set("strictQuery", false);

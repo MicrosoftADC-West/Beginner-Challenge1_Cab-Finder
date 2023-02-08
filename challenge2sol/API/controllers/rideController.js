@@ -9,10 +9,13 @@ exports.getAllRides = catchAsync(async (req, res, next) => {
   let rides;
   const { start_location, end_location } = req.query;
 
-  const startLocationArray = start_location.split(",");
-  const endLocationArray = end_location.split(",");
-
   if (start_location && end_location) {
+    const startLocationArray = start_location.split(",");
+    const endLocationArray = end_location.split(",");
+
+    if (startLocationArray.length !== 2 || endLocationArray.length !== 2) {
+      return next(new AppError("Please provide a valid location", 400));
+    }
     const location = await Location.findOne({
       $and: [
         { start_coord_lat: Number(startLocationArray[0]) },
@@ -44,6 +47,26 @@ exports.getAllRides = catchAsync(async (req, res, next) => {
     results: rides.length,
     data: {
       rides,
+    },
+  });
+});
+
+exports.getRide = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+  const ride = await Ride.findOne({ ride_id: id })
+    .populate("service")
+    .populate("location");
+
+  if (!ride) {
+    return next(new AppError("No ride found with that ID", 404));
+  }
+
+  const newRide = new ReShape([ride]).refactorRides();
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      ride: newRide[0],
     },
   });
 });
@@ -125,5 +148,80 @@ exports.createRide = catchAsync(async (req, res, next) => {
     data: {
       ride,
     },
+  });
+});
+
+exports.updateRide = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const { start_location, end_location, ride_service, estimated_arrival_time } =
+    req.body;
+
+  let location;
+  let rideService;
+  let estimatedTime;
+  if (start_location && end_location) {
+    if (start_location.length !== 2 || end_location.length !== 2) {
+      return next(new AppError("Please provide a valid location", 400));
+    }
+
+    const loc = await Location.findOne({
+      $and: [
+        { start_coord_lat: Number(start_location[0]) },
+        { start_coord_long: Number(start_location[1]) },
+        { destination_coord_lat: Number(end_location[0]) },
+        { destination_coord_long: Number(end_location[1]) },
+      ],
+    });
+    if (!loc) {
+      return next(new AppError("Please provide a valid location", 400));
+    } else {
+      location = loc;
+    }
+  }
+  if (ride_service) {
+    rideService = await RideService.findOne({ rideservice_name: ride_service });
+  }
+
+  if (estimated_arrival_time) {
+    if (!estimated_arrival_time instanceof Date) {
+      return next(new AppError("Please provide a valid date", 400));
+    } else {
+      estimatedTime = estimated_arrival_time;
+    }
+  }
+  const updateBody = {};
+  if (location) updateBody.location_id = location.location_id;
+  if (rideService) updateBody.rideservice_id = rideService.rideservice_id;
+  if (estimatedTime) updateBody.estimated_arrival_time = location.estimatedTime;
+
+  const updatedRide = await Ride.findOneAndUpdate({ ride_id: id }, updateBody, {
+    runValidators: true,
+    new: true,
+  });
+
+  if (!updatedRide) {
+    return next(new AppError("No ride found with that ID", 404));
+  }
+
+  res.status(200).json({
+    status: "success",
+    data: {
+      updatedRide,
+    },
+  });
+});
+
+exports.deleteRide = catchAsync(async (req, res, next) => {
+  const { id } = req.params;
+
+  const deletedRide = await Ride.findOneAndDelete({ ride_id: id });
+
+  if (!deletedRide) {
+    return next(new AppError("No ride found with that ID", 404));
+  }
+  res.status(204).json({
+    status: "success",
+    data: null,
   });
 });

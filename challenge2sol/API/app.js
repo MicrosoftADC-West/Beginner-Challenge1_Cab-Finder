@@ -12,7 +12,6 @@ app.use(morgan("dev"));
 app.use(cors());
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
 app.use("/rides", rideRouter);
 
@@ -20,7 +19,8 @@ app.get("/", (req, res) => {
   res.json({
     status: "success",
     message: "Welcome to the Ride API",
-    link_to_postman_documentation: "",
+    link_to_postman_documentation:
+      "https://documenter.getpostman.com/view/22751768/2s935rK31H",
   });
 });
 

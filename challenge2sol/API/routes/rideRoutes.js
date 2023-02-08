@@ -9,9 +9,9 @@ router
   .post(rideController.createRide);
 
 router
-  .route("/rides/:id")
-  .get((req, res) => {})
-  .put()
-  .delete();
+  .route("/:id")
+  .get(rideController.getRide)
+  .put(rideController.updateRide)
+  .delete(rideController.deleteRide);
 
 module.exports = router;
