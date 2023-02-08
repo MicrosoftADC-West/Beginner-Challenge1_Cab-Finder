@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CabFinder", "CabFinder.csproj", "{29A3F2E6-7984-4E6B-8D41-B244133698DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CabFinder", "CabFinder.csproj", "{29A3F2E6-7984-4E6B-8D41-B244133698DF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProjects", "..\TestProjects\TestProjects.csproj", "{79176B74-6CAE-40E0-8A98-8BD7BC7A010E}"
 EndProject
