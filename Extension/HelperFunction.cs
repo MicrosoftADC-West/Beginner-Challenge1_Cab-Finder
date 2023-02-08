@@ -68,6 +68,13 @@ namespace CabFinder
             return rideDetailList;
         }
 
+        /// <summary>
+        /// Get Best Ride Function using the sort/order method
+        /// </summary>
+        /// <param name="rides"><see cref="List{Ride}"/> rides</param>
+        /// <param name="rideServices"><see cref="List{RideService}"/> ride services</param>
+        /// <param name="locations"><see cref="List{Location}"/> locatios</param>
+        /// <returns><see cref="BestRideDto"/>Best ride</returns>
         public static BestRideDto GetBestPrice(List<Location> locations, List<Ride> rides, List<RideService> rideServices)
         {
             var rideDetailList = GetRideDetails(rides, rideServices, locations);
