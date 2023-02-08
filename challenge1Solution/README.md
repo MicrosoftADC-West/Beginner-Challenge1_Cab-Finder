@@ -4,6 +4,8 @@
 
  **test.js file:** The class is initialized here and both helper methods are called.
 
+#### Prerequisite
+* have node installed on your computer
 ### How to run
 * Copy the project to your local machine
 * Open up your terminal

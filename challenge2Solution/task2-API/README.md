@@ -3,7 +3,8 @@
 
 **Entry Point:** server.js
 
-
+#### Prerequisite
+* have node installed on your computer
 ### How to run
 * Copy the project to your local machine
 * Open up your terminal
