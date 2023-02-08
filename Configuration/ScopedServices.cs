@@ -9,6 +9,8 @@ namespace CabFinder.Configurations
         public static IServiceCollection AddScopedServices(this IServiceCollection services) => services
             .AddScoped<IRepository, Repository>()
             .AddScoped<IRideService, RideService>()
+            .AddScoped<ILocationService, LocationService>()
+            .AddScoped<IRideServiceService, RideServiceService>()
             .AddTransient<Seeder>();
     }
 }

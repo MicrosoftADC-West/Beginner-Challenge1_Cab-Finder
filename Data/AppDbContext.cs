@@ -1,5 +1,6 @@
 ﻿using CabFinder.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CabFinder.Data
 {
@@ -16,6 +17,11 @@ namespace CabFinder.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+            var dateTimeConverter = new ValueConverter<DateTime, DateTime>(
+                     v => v, v => DateTime.SpecifyKind(v, DateTimeKind.Local));
+
+            builder.Entity<Ride>().Property(c => c.estimated_arrival_time).HasConversion(dateTimeConverter);
+
             base.OnModelCreating(builder);
         }
     }

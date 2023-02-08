@@ -7,9 +7,9 @@ namespace CabFinder.DTOs
     public class CreateRideDto
     {
         [Required]
-        public LocationDto start_location { get; set; }
+        public StartLocationDto start_location { get; set; }
         [Required]
-        public LocationDto end_location { get; set; }
+        public DestinationLocationDto end_location { get; set; }
         [Required]
         public int rideservice_id { get; set; }
         [Required]
@@ -18,9 +18,14 @@ namespace CabFinder.DTOs
 
     public class UpdateRideDto
     {
-        public LocationDto start_location { get; set; }
-        public LocationDto end_location { get; set; }
+        public StartLocationDto start_location { get; set; }
+        public DestinationLocationDto end_location { get; set; }
         public int rideservice_id { get; set; }
         public DateTime estimated_arrival_time { get; set; }
+    }
+
+    public class GetRideDto : Ride
+    {
+        public double price { get; set; }
     }
 }

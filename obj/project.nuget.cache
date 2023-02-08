@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "GtX2BsS1jUhmjXzIPyRYh0MUkKyMdaaRxko5jgGyRTgyzyd/WSjpjOmDNDuPnHMAlO4HxQ9vgIXYbWX+N5lpxg==",
+  "dgSpecHash": "0dIG5sjtq+odaoWyu0wOUjqRcqPRKGAcW4xLLfRsVl7kID3E8DV23IJmnyjm/3BXKN6DF1aeGU6FaTTArz37QA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ilife\\source\\repos\\CabFinder\\CabFinder.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Ilife\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Ilife\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
+    "C:\\Users\\Ilife\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
     "C:\\Users\\Ilife\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Ilife\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\Ilife\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.2\\microsoft.entityframeworkcore.7.0.2.nupkg.sha512",

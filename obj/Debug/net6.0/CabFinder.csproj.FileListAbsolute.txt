@@ -54,3 +54,4 @@ C:\Users\Ilife\source\repos\CabFinder\bin\Debug\net6.0\System.Text.Encodings.Web
 C:\Users\Ilife\source\repos\CabFinder\bin\Debug\net6.0\System.Text.Json.dll
 C:\Users\Ilife\source\repos\CabFinder\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Users\Ilife\source\repos\CabFinder\bin\Debug\net6.0\libman.json
+C:\Users\Ilife\source\repos\CabFinder\bin\Debug\net6.0\CsvHelper.dll

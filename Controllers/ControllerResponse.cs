@@ -14,23 +14,25 @@ namespace Connect_Backend_API.Controllers
             switch (customResponse.Response)
             {
                 case ServiceResponses.BadRequest:
-                    ModelState.AddModelError($"{customResponse.Response}", customResponse.Message);
-                    return BadRequest(ModelState);
+                    return BadRequest(customResponse.Message);
 
                 case ServiceResponses.NotFound:
-                    ModelState.AddModelError($"{customResponse.Response}", customResponse.Message);
-                    return NotFound(ModelState);
+                    return NotFound(customResponse.Message);
 
                 case ServiceResponses.Failed:
-                    ModelState.AddModelError($"{customResponse.Response}", customResponse.Message);
-                    return UnprocessableEntity(ModelState);
+                    return UnprocessableEntity(customResponse.Message);
 
                 case ServiceResponses.Success:
                     return Ok(customResponse.Data == null ? customResponse.Response : customResponse.Data);
 
+                case ServiceResponses.ServerError:
+                    return StatusCode(StatusCodes.Status500InternalServerError, customResponse.Data == null ? customResponse.Response : customResponse.Data);
+
+                case ServiceResponses.DeleteSuccess:
+                    return StatusCode(StatusCodes.Status204NoContent, "");
+
                 default:
-                    ModelState.AddModelError($"{customResponse.Response}", customResponse.Message);
-                    return UnprocessableEntity(ModelState);
+                    return UnprocessableEntity(customResponse.Message);
             }
         }
     }

@@ -1,8 +1,13 @@
 ﻿namespace CabFinder.DTOs
 {
-    public class LocationDto
+    public class StartLocationDto
     {
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        public double start_latitude { get; set; }
+        public double start_longitude { get; set; }
+    }
+    public class DestinationLocationDto
+    {
+        public double destination_latitude { get; set; }
+        public double destiation_longitude { get; set; }
     }
 }

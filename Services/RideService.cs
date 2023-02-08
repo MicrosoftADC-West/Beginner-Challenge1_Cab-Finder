@@ -8,6 +8,7 @@ namespace CabFinder.Services
     public interface IRideService
     {
         Task<CustomResponse<Ride>> Create(Ride ride, CancellationToken token);
+        Task<bool> Create(List<Ride> ride, CancellationToken token);
         Task<CustomResponse<Ride>> Update(Ride ride, CancellationToken token);
         Task<CustomResponse<Ride>> GetById(int rideId, CancellationToken token);
         IQueryable<Ride> ListAll();
@@ -43,7 +44,7 @@ namespace CabFinder.Services
                 return await GetById(ride.ride_id, token);
             }
 
-            return new CustomResponse<Ride>(ServiceResponses.Failed, "Failed to create");
+            return new CustomResponse<Ride>(ServiceResponses.ServerError, "Failed to create");
         }
 
         public async Task<CustomResponse<bool>> Delete(Ride ride, CancellationToken token)
@@ -56,10 +57,10 @@ namespace CabFinder.Services
             var result = await repository.DeleteAsync(ride, token);
             if (result)
             {
-                return new CustomResponse<bool>(ServiceResponses.Success, true);
+                return new CustomResponse<bool>(ServiceResponses.DeleteSuccess, true);
             }
 
-            return new CustomResponse<bool>(ServiceResponses.Failed, "Failed to delete");
+            return new CustomResponse<bool>(ServiceResponses.ServerError, "Failed to delete");
         }
 
         public async Task<CustomResponse<Ride>> GetById(int rideId, CancellationToken token)
@@ -93,7 +94,15 @@ namespace CabFinder.Services
                 return await GetById(ride.ride_id, token);
             }
 
-            return new CustomResponse<Ride>(ServiceResponses.Failed, "Failed to update");
+            return new CustomResponse<Ride>(ServiceResponses.ServerError, "Failed to update");
+        }
+
+        public async Task<bool> Create(List<Ride> ride, CancellationToken token)
+        {
+            if (ride is null)
+                return false;
+
+            return await repository.AddRangeAsync(ride, token);
         }
     }
 }

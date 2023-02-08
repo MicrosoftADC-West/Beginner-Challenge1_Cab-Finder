@@ -2,6 +2,6 @@
 {
     public enum ServiceResponses
     {
-        BadRequest,Failed,NotFound,Success,UnAuthorized,ServerError
+        BadRequest,Failed,NotFound,Success,UnAuthorized,ServerError,DeleteSuccess
     }
 }
