@@ -32,7 +32,7 @@ class SkillChallenge {
     const rideServicesObj = {};
     const locationsObj = {};
 
-    // Create a lookup table for rideServices and locations
+    // Create a lookup Object for rideServices and locations
     this.rideServices.forEach((rideService) => {
       rideServicesObj[rideService.rideservice_id] = rideService;
     });
@@ -83,6 +83,7 @@ class SkillChallenge {
         rideService: rideSrv.rideservice_name,
         distanceCovered,
         route: route.location_description,
+        estimated_arrival_time: ride.estimated_arrival_time,
         price: distanceCovered * rideSrv.priceperkm,
       };
     });
@@ -94,28 +95,26 @@ class SkillChallenge {
   getBestPrice() {
     const rides = this.calculateRidePrices();
     const rideservices = this.rideServices;
+    const locations = this.locations;
 
     const results = {};
 
-    const findCheapestService = (services) => {
-      let cheapest = services[0];
-      services.forEach((service) => {
-        if (service.priceperkm < cheapest.priceperkm) {
-          cheapest = service;
-        }
-      });
-      return cheapest;
-    };
-
-    const cheapestService = findCheapestService(rideservices);
-
     rides.forEach((ride) => {
-      results["rideWithId_" + ride.ride_id] = {
-        rideRoute: ride.route,
-        bestPrice: cheapestService,
-      };
-      results["rideWithId_" + ride.ride_id].bestPrice.priceForDistanceCovered =
-        ride.distanceCovered * cheapestService.priceperkm;
+      if (!results[ride.route]) {
+        results[ride.route] = {
+          bestRideService: {
+            ride_service_name: ride.rideService,
+            price: ride.price,
+          },
+        };
+      } else if (ride.price < results[ride.route].price) {
+        results[ride.route] = {
+          bestRideService: {
+            ride_service_name: ride.rideService,
+            price: ride.price,
+          },
+        };
+      }
     });
 
     return results;
