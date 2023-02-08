@@ -1,0 +1,20 @@
+.form-button {
+    outline: none;
+    border: none;
+    background: #62cf3a;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    padding: 8px 10px;
+    margin-top: .5em;
+    box-shadow: 0 3px 6px rgba(142, 142, 142, 0.16), 0 3px 6px rgba(142, 142, 142, 0.23);
+    transition: all 200ms ease-in-out;
+    color: white;
+}
+
+.form-button:hover {
+    border: 1px solid #62cf3a;
+    color: #62cf3a;
+    background: white;
+}

@@ -1,0 +1,5 @@
+node_modules
+src/challenge2/api/node_modules
+src/challenge2/client/node_modules
+dist
+Data

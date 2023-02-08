@@ -1,0 +1,44 @@
+{
+  "name": "skillchallenge-cab-finder",
+  "version": "1.0.0",
+  "description": "**Duration** : 120 mins",
+  "main": "index.js",
+  "scripts": {
+    "api": "cd ./src/challenge2/api && npm run-script server",
+    "client": "cd ./src/challenge2/client && npm run-script start",
+    "installapimodules": "cd ./src/challenge2/api && npm install",
+    "installclientmodules": "cd ./src/challenge2/client && npm install",
+    "installmodules": "npm install concurrently && concurrently \"npm run installapimodules\" \"npm run installclientmodules\" \"npm install\"",
+    "challenge1": "ts-node-dev main.ts && nodemon dist/main.js",
+    "challenge2": "concurrently \"npm run api\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder/issues"
+  },
+  "homepage": "https://github.com/MicrosoftADC-West/SkillChallenge-Cab-Finder#readme",
+  "dependencies": {
+    "@types/node": "^18.13.0",
+    "concurrently": "^7.6.0",
+    "csv-to-json": "^0.1.2",
+    "ts-node-dev": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.13",
+    "@types/express": "^4.17.17",
+    "body-parser": "^1.20.1",
+    "convert-csv-to-json": "^1.5.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "joi": "^17.7.0",
+    "mysql2": "^3.1.1",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.5"
+  }
+}
