@@ -1,9 +1,15 @@
 # Challenge Your Skills Learnathon
+
 # **Contoso Cheap Cab Finder**
 
 **Duration** : 120 mins
 
 **Difficulty level** : Beginner
+
+**How To Start Application**
+Run **npm run installmodules** to install all the required modules
+Then, once the modules have been onstalled, to run challenge 1, use the command npm run challenge1
+To run challenge 2, use npm run challenge2
 
 **Prerequisite** : Knowledge of an IDE with the web development workload.
 
@@ -38,24 +44,24 @@ The user should be able to sort the prices by ride service, price, and estimated
 
 A "Rides" table with the following fields:
 
-- ride\_id (primary key)
-- Location\_id (foreign key)
-- rideservice\_id
-- estimated\_arrival\_time
+- ride_id (primary key)
+- Location_id (foreign key)
+- rideservice_id
+- estimated_arrival_time
 
 A "Locations" table with the following fields:
 
-- location\_id (primary key)
-- location\_description
-- start\_coord\_long
-- start\_coord\_lat
-- destination\_coord\_long
-- destination\_coord\_lat
+- location_id (primary key)
+- location_description
+- start_coord_long
+- start_coord_lat
+- destination_coord_long
+- destination_coord_lat
 
 A "Ride Services" table with the following fields:
 
-- rideservice\_id (primary key)
-- rideservice\_name (foreign key) (e.g., Uber, InDrive, Taxi, Bolt)
+- rideservice_id (primary key)
+- rideservice_name (foreign key) (e.g., Uber, InDrive, Taxi, Bolt)
 - priceperkm
 
 **Challenge 1:**
@@ -98,8 +104,8 @@ The API contracts for the Ride Price Aggregator service would include the follow
 
 Query Parameters:
 
-- start\_location (required): The starting coordinates for the ride.
-- end\_location (required): The destination coordinates for the ride.
+- start_location (required): The starting coordinates for the ride.
+- end_location (required): The destination coordinates for the ride.
 
 Response:
 
@@ -123,10 +129,10 @@ Response:
 
 Request Body:
 
-- start\_location (required): The starting location for the ride.
-- end\_location (required): The destination location for the ride.
-- ride\_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
-- estimated\_arrival\_time (required): The estimated arrival time for the ride.
+- start_location (required): The starting location for the ride.
+- end_location (required): The destination location for the ride.
+- ride_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+- estimated_arrival_time (required): The estimated arrival time for the ride.
 
 Response:
 
@@ -142,10 +148,10 @@ id (required): The ID of the ride to update.
 
 Request Body:
 
-- start\_location: The starting location for the ride.
-- end\_location: The destination location for the ride.
-- ride\_service: The ride service (e.g., Uber, Lyft, Taxi) for the ride.
-- estimated\_arrival\_time: The estimated arrival time for the ride.
+- start_location: The starting location for the ride.
+- end_location: The destination location for the ride.
+- ride_service: The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+- estimated_arrival_time: The estimated arrival time for the ride.
 
 Response:
 
