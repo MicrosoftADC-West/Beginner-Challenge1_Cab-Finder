@@ -14,4 +14,4 @@ console.log("\n===============================================");
 console.log("Prints the best price for all unique routes");
 console.log("===============================================");
 
-console.log(challenge.getBestPrice()); //Remove the index to print all the rides. e.g console.log(challenge.getBestPrice()["rideWithId_1"]);
+console.log(challenge.getBestPrice()); //Prints the best price for all unique routes
