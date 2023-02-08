@@ -48,7 +48,7 @@ namespace CabFinder.Migrations
 
                     b.HasKey("location_id");
 
-                    b.ToTable("Locations");
+                    b.ToTable("Locations", (string)null);
                 });
 
             modelBuilder.Entity("CabFinder.Entities.Ride", b =>
@@ -74,7 +74,7 @@ namespace CabFinder.Migrations
 
                     b.HasIndex("rideservice_id");
 
-                    b.ToTable("Rides");
+                    b.ToTable("Rides", (string)null);
                 });
 
             modelBuilder.Entity("CabFinder.Entities.RideService", b =>
@@ -94,7 +94,7 @@ namespace CabFinder.Migrations
 
                     b.HasKey("rideservice_id");
 
-                    b.ToTable("RideServices");
+                    b.ToTable("RideServices", (string)null);
                 });
 
             modelBuilder.Entity("CabFinder.Entities.Ride", b =>

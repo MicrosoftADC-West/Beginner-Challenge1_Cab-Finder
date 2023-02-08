@@ -38,6 +38,9 @@ namespace CabFinder.Services
                 return new CustomResponse<Ride>(ServiceResponses.BadRequest, "Ride cannot be null");
             }
 
+
+            int lo = await ListAll().CountAsync();
+            ride.ride_id = ++lo;
             var result = await repository.AddAsync(ride, token);
             if (result)
             {

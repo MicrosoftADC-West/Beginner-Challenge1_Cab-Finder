@@ -9,6 +9,7 @@ using Connect_Backend_API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -20,22 +21,25 @@ namespace CabFinder.Controllers
     {
 
         private readonly IRideService rideService;
+        private readonly ILocationService locationService;
         private readonly IMapper mapper;
 
-        public RidesController(IRideService rideService, IMapper mapper)
+        public RidesController(IRideService rideService, IMapper mapper, ILocationService locationService)
         {
             this.rideService = rideService;
             this.mapper = mapper;
+            this.locationService = locationService;
         }
 
         // GET: api/<RidesController>
         [HttpGet]
+        [ProducesResponseType(typeof(GetRideDto[]), StatusCodes.Status200OK)]
         public  async Task<IActionResult> Get([FromQuery]StartLocationDto starting, [FromQuery]DestinationLocationDto ending, CancellationToken token)
         {
             var rides = await rideService.ListAll()
                 .Include(c => c.rideservice)
                 .Include(c => c.location)
-                //.FilterByLocation(starting, ending)
+                .FilterByLocation(starting, ending)
                 .ToListAsync(token);
 
             return Ok(mapper.Map<List<GetRideDto>>(rides));
@@ -43,6 +47,10 @@ namespace CabFinder.Controllers
 
         // GET api/<RidesController>/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(GetRideDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status422UnprocessableEntity)]
         public async Task<IActionResult> Get(int id, CancellationToken token)
         {
             var result = await rideService.GetById(id, token);
@@ -65,6 +73,10 @@ namespace CabFinder.Controllers
 
         // POST api/<RidesController>
         [HttpPost]
+        [ProducesResponseType(typeof(string), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Post(CreateRideDto model, CancellationToken token)
         {
             if (!ModelState.IsValid)
@@ -72,17 +84,29 @@ namespace CabFinder.Controllers
                 return BadRequest(ModelState);
             }
 
-            var result = await rideService.Create(mapper.Map<Ride>(model), token);
-            if(result.Response == ServiceResponses.Success)
-            {
-                return Created("",result.Data.ride_id);
+            var locationResult = await locationService.Create(mapper.Map<Location>(model), token);
+            if (locationResult.Response == ServiceResponses.Success) {
+                var ride = mapper.Map<Ride>(model);
+                ride.location_id = locationResult.Data.location_id;
+                var result = await rideService.Create(ride, token);
+                if (result.Response == ServiceResponses.Success)
+                {
+                    return StatusCode(StatusCodes.Status201Created, result.Data.ride_id);
+                }
+                else
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, result.Message);
+                }
             }
-
-            return StatusCode(StatusCodes.Status500InternalServerError, result.Message);
+            return StatusCode(StatusCodes.Status500InternalServerError, locationResult.Message);
         }
 
         // PUT api/<RidesController>/5
         [HttpPut("{id}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Put(int id, UpdateRideDto model, CancellationToken token)
         {
             if (!ModelState.IsValid)
@@ -109,6 +133,10 @@ namespace CabFinder.Controllers
 
         // DELETE api/<RidesController>/5
         [HttpDelete("{id}")]
+        [ProducesResponseType(typeof(string), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Delete(int id, CancellationToken token)
         {
             var existingRide = await rideService.GetById(id, token);
