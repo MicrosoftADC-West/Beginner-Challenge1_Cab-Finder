@@ -38,6 +38,11 @@ class RouteSelection extends StatelessWidget {
                     );
                   },
                 ),
+                const SizedBox(height: 24),
+                ElevatedButton(
+                  onPressed: () => flow.automate(context),
+                  child: const Text("Automate Test"),
+                )
               ],
             ),
           ),

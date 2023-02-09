@@ -4,26 +4,30 @@
 
 import 'dart:convert';
 
-class Route {
-  Route({
-    required this.locationId,
-    required this.locationDescription,
-    required this.startCoordLong,
-    required this.startCoordLat,
-    required this.destinationCoordLong,
+import 'package:equatable/equatable.dart';
+
+class Route extends Equatable {
+  const Route({
     required this.destinationCoordLat,
+    required this.destinationCoordLong,
+    required this.locationDescription,
+    required this.locationId,
+    required this.startCoordLat,
+    required this.startCoordLong,
   });
 
-  factory Route.fromJson(Map<dynamic, dynamic> json) => Route(
-        locationId: json["location_id"],
-        locationDescription: json["location_description"],
-        startCoordLong: json["start_coord_long"]?.toDouble(),
-        startCoordLat: json["start_coord_lat"]?.toDouble(),
-        destinationCoordLong: json["destination_coord_long"]?.toDouble(),
-        destinationCoordLat: json["destination_coord_lat"]?.toDouble(),
-      );
+  factory Route.fromJson(String source) => Route.fromMap(json.decode(source));
 
-  factory Route.fromRawJson(String str) => Route.fromJson(json.decode(str));
+  factory Route.fromMap(Map<dynamic, dynamic> map) {
+    return Route(
+      destinationCoordLat: map["destination_coord_lat"]?.toDouble() ?? 0.0,
+      destinationCoordLong: map['destination_coord_long']?.toDouble() ?? 0.0,
+      locationDescription: map['location_description'] ?? '',
+      locationId: map['location_id']?.toInt() ?? 0,
+      startCoordLat: map['start_coord_lat']?.toDouble() ?? 0.0,
+      startCoordLong: map['start_coord_long']?.toDouble() ?? 0.0,
+    );
+  }
 
   final double destinationCoordLat;
   final double destinationCoordLong;
@@ -32,14 +36,51 @@ class Route {
   final double startCoordLat;
   final double startCoordLong;
 
-  String toRawJson() => json.encode(toJson());
+  @override
+  List<Object> get props {
+    return [
+      destinationCoordLat,
+      destinationCoordLong,
+      locationDescription,
+      locationId,
+      startCoordLat,
+      startCoordLong,
+    ];
+  }
 
-  Map<String, dynamic> toJson() => {
-        "location_id": locationId,
-        "location_description": locationDescription,
-        "start_coord_long": startCoordLong,
-        "start_coord_lat": startCoordLat,
-        "destination_coord_long": destinationCoordLong,
-        "destination_coord_lat": destinationCoordLat,
-      };
+  @override
+  String toString() {
+    return 'Route(destinationCoordLat: $destinationCoordLat, destinationCoordLong: $destinationCoordLong, locationDescription: $locationDescription, locationId: $locationId, startCoordLat: $startCoordLat, startCoordLong: $startCoordLong)';
+  }
+
+  Route copyWith({
+    double? destinationCoordLat,
+    double? destinationCoordLong,
+    String? locationDescription,
+    int? locationId,
+    double? startCoordLat,
+    double? startCoordLong,
+  }) {
+    return Route(
+      destinationCoordLat: destinationCoordLat ?? this.destinationCoordLat,
+      destinationCoordLong: destinationCoordLong ?? this.destinationCoordLong,
+      locationDescription: locationDescription ?? this.locationDescription,
+      locationId: locationId ?? this.locationId,
+      startCoordLat: startCoordLat ?? this.startCoordLat,
+      startCoordLong: startCoordLong ?? this.startCoordLong,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'destination_coord_lat': destinationCoordLat,
+      'destination_coord_long': destinationCoordLong,
+      'location_description': locationDescription,
+      'location_id': locationId,
+      'start_coord_lat': startCoordLat,
+      'start_coord_long': startCoordLong,
+    };
+  }
+
+  String toJson() => json.encode(toMap());
 }

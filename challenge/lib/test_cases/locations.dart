@@ -1,4 +1,4 @@
-const List<Map> tLocations = [
+const List<Map<String, dynamic>> tLocations = [
   {
     "location_id": 1,
     "location_description": "Trip from Agege to Eti-Osa",

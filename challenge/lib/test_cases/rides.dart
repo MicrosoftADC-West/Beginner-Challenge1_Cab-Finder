@@ -1,4 +1,4 @@
-const List<Map> tRides = [
+const List<Map<String, dynamic>> tRides = [
   {
     "ride_id": 1,
     "location_id": 6,

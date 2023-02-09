@@ -1,4 +1,4 @@
-const List<Map> tRideServices = [
+const List<Map<String, dynamic>> tRideServices = [
   {"rideservice_id": 1, "rideservice_name": "Bolt", "priceperkm": 45},
   {"rideservice_id": 2, "rideservice_name": "Uber", "priceperkm": 50},
   {"rideservice_id": 3, "rideservice_name": "ORide", "priceperkm": 35},

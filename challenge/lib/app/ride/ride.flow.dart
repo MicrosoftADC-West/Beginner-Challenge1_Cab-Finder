@@ -25,6 +25,13 @@ class RideFlow {
 
   late List<Ride> rides;
 
+  void automate(BuildContext context) {
+    startCoordsController.text = "6.545278, 3.355556";
+    endCoordsController.text = "6.524722, 3.398056";
+
+    nextFromCoords(context);
+  }
+
   void nextFromCoords(BuildContext context) {
     if (!coordsExp.hasMatch(startCoords) || !coordsExp.hasMatch(endCoords)) {
       AlertUtil.showError("Invalid coordinates");
