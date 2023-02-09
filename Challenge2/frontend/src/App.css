@@ -1,0 +1,10 @@
+.App-content {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 50rem) {
+  .public-page {
+    margin-top: 70px;
+  }
+}

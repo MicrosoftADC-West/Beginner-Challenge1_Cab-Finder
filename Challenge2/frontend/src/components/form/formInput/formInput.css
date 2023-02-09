@@ -1,0 +1,86 @@
+.FormInput {
+  padding-top: 10px;
+}
+
+.FormInput .input-wrapper {
+  position: relative;
+}
+
+.FormInput input {
+  height: 60px;
+  width: 100%;
+  background-color: var(--input-background);
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  padding: 5px 40px 5px 20px;
+  margin-top: 8px;
+  font-size: var(--normal-paragraph);
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: 0.001em;
+}
+
+.FormInput input.transparent {
+  background-color: var(--white);
+  border: 1px solid #dadada;
+}
+
+.FormInput input::placeholder {
+  font-size: var(--normal-paragraph);
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: 0.001em;
+}
+
+.FormInput input::-webkit-outer-spin-button,
+.FormInput input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.FormInput input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.FormInput svg {
+  fill: var(--blue);
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  bottom: 30px;
+  transform: translateY(50%);
+}
+
+.FormInput-small label {
+  font-size: var(--small-paragraph);
+}
+
+.FormInput-small input {
+  height: 50px;
+  font-size: var(--small-paragraph);
+}
+
+.FormInput-small input::placeholder {
+  font-size: var(--small-paragraph);
+}
+
+.FormInput-small svg {
+  bottom: 26px;
+}
+
+@media (max-width: 35rem) {
+  .FormInput label {
+    font-size: var(--small-paragraph);
+  }
+  .FormInput input {
+    height: 50px;
+    font-size: var(--small-paragraph);
+  }
+  .FormInput input::placeholder {
+    font-size: var(--small-paragraph);
+  }
+  .FormInput svg {
+    bottom: 26px;
+  }
+}
