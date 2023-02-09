@@ -49,13 +49,9 @@ function RidesTable({ setState, state }: { setState: any; state: any }) {
       setState(response?.data);
       setInitialRidesValues(response?.data);
       setState({ ...state, loading: false, data: response?.data });
-
-      // setRideFetching(false);
     } catch (error) {
       setState({ ...state, loading: false, error: error });
-
       console.log(error);
-      // setRideFetching(false);
     }
   };
   const getRideServices = async () => {
@@ -147,7 +143,7 @@ function RidesTable({ setState, state }: { setState: any; state: any }) {
                   0,
                   10
                 )} ${data?.estimated_arrival_time.slice(11, 19)}`}</td>
-                <td>100</td>
+                {data.price && <td>{parseFloat(data?.price.toFixed(2))}</td>}
 
                 <td className="action_buttons">
                   <Button

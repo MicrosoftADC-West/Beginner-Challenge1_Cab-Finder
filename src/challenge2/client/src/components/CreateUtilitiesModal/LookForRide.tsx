@@ -48,6 +48,7 @@ const LookForRide = ({
     setLocations({ ...locations, loading: true });
     try {
       const response = await locationService.getAllLocations();
+
       setLocations({ ...locations, loading: false, data: response?.data });
     } catch (error) {
       console.log(error);
@@ -90,6 +91,8 @@ const LookForRide = ({
     setState({ ...state, loading: true });
     try {
       const response = await ride.getRidesByLatAndLong(createRideRequestData);
+      console.log(response.data);
+
       setState({ ...state, loading: false, data: response?.data });
     } catch (error) {
       setState({ ...state, loading: false, error: error });
