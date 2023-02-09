@@ -22,18 +22,4 @@ namespace Cab_Finder_Lib.Models
 
         public double destination_coord_lat { get; set; }
     }
-
-    public class GetRideDetail
-    {
-        public Ride Ride { get; set; }
-        public decimal Price { get; set; }
-        public double Distance { get; set; }
-        public string RideServiceName { get; set; }
-    }
-
-    public class BestPrice
-    {
-        public string RideServiceName { get; set; }
-        public decimal Price { get; set; }
-    }
 }

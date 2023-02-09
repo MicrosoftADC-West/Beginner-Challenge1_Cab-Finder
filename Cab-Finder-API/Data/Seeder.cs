@@ -21,12 +21,26 @@ namespace Cab_Finder_API.Data
 
             var locations = CabFinderMain.ReadFromJSON<LocationDb>(locationPath);
             var rides = CabFinderMain.ReadFromJSON<RideDb>(ridesPath);
-            var rideService = CabFinderMain.ReadFromJSON<RideServiceDb>(ridesServicePath);
+            var rideServices = CabFinderMain.ReadFromJSON<RideServiceDb>(ridesServicePath);
 
             foreach(var location in locations)
             {
-
+                AppDbContext.Add(location);
             }
+
+            foreach(var rideService in rideServices)
+            {
+                AppDbContext.Add(rideService);
+            }
+
+            foreach(var ride in rides)
+            {
+                ride.estimated_arrival_time = ride.estimated_arrival_time.ToUniversalTime();
+                AppDbContext.Add(ride);
+            }
+
+
+            AppDbContext.SaveChanges();
         }
     }
 }
