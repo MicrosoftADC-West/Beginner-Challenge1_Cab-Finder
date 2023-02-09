@@ -116,11 +116,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\ADC-Test\\Src\\TestSpace\\TestSpace.csproj",
+      "projectUniqueName": "C:\\ADC-Test\\New folder\\SkillChallenge-Cab-Finder\\TestSpace\\TestSpace.csproj",
       "projectName": "TestSpace",
-      "projectPath": "C:\\ADC-Test\\Src\\TestSpace\\TestSpace.csproj",
+      "projectPath": "C:\\ADC-Test\\New folder\\SkillChallenge-Cab-Finder\\TestSpace\\TestSpace.csproj",
       "packagesPath": "C:\\Users\\lukii\\.nuget\\packages\\",
-      "outputPath": "C:\\ADC-Test\\Src\\TestSpace\\obj\\",
+      "outputPath": "C:\\ADC-Test\\New folder\\SkillChallenge-Cab-Finder\\TestSpace\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\lukii\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -137,8 +137,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\ADC-Test\\Src\\Cab-Finder-Lib\\Cab-Finder-Lib.csproj": {
-              "projectPath": "C:\\ADC-Test\\Src\\Cab-Finder-Lib\\Cab-Finder-Lib.csproj"
+            "C:\\ADC-Test\\New folder\\SkillChallenge-Cab-Finder\\Cab-Finder-Lib\\Cab-Finder-Lib.csproj": {
+              "projectPath": "C:\\ADC-Test\\New folder\\SkillChallenge-Cab-Finder\\Cab-Finder-Lib\\Cab-Finder-Lib.csproj"
             }
           }
         }
