@@ -1,0 +1,19 @@
+.admin-dahsboard-layout {
+  background-color: #f9f9f9;
+  padding: 90px 20px 80px 280px;
+  font-family: "DM Sans", sans-serif;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+@media (max-width: 60rem) {
+  .admin-dahsboard-layout {
+    padding: 90px 20px 80px 20px;
+  }
+}
+
+@media (max-width: 30rem) {
+  .admin-dahsboard-layout {
+    padding: 90px 10px 80px 10px;
+  }
+}

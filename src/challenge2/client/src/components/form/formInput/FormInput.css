@@ -1,0 +1,108 @@
+.inputContainer {
+    margin-block: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: .3em;
+}
+
+.formInputLabel {
+    margin: 1px 0 9px 1px;
+    color: rgb(102, 102, 102);
+    font-size: 10px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    line-height: 26px;
+    font-weight: 500;
+}
+
+.inputBox {
+    padding: 8px 7px;
+    outline: none;
+    font-size: 12px;
+    border: none;
+    border-bottom: 1px solid #a3a3a3;
+    color: rgb(102, 102, 102);
+    border-radius: 5px;
+
+}
+
+.passwordInputContainer {
+    display: flex;
+    border-bottom: 1px solid #a3a3a3;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+    min-width: 300px;
+}
+
+.inputBox::placeholder {
+    color: #a3a3a3;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+
+.form-input-icons {
+    cursor: pointer;
+    margin-right: .5em;
+}
+
+/* Checkbox */
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    gap: .3em;
+}
+
+.formCheckboxLabel {
+    color: rgb(102, 102, 102);
+    font-size: 10px;
+    letter-spacing: 0.67px;
+    line-height: 26px;
+    font-weight: 400;
+}
+
+.errorMessage {
+    color: #be1e2d;
+    font-size: .8rem;
+    text-transform: capitalize;
+    margin-top: .7em;
+}
+
+.errorInput {
+    animation: shake 0.2s ease-in-out 0s 2;
+    box-shadow: 0 0 0.5em #be1e2d;
+}
+
+@keyframes shake {
+    0% {
+        margin-left: 0rem;
+    }
+
+    25% {
+        margin-left: 0.5rem;
+    }
+
+    75% {
+        margin-left: -0.5rem;
+    }
+
+    100% {
+        margin-left: 0rem;
+    }
+}
+
+
+@media screen and (min-width: 768px) {
+
+    .formInputLabel,
+    .inputBox {
+        font-size: 13px;
+    }
+
+    .formCheckboxLabel {
+        font-size: 14px;
+    }
+
+
+}

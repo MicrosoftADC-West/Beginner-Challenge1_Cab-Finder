@@ -1,0 +1,23 @@
+.errorMessageBorder {
+    font-size: 11px;
+    border: 1px solid rgb(121, 0, 0);
+    transition: all 300ms ease-in-out;
+    display: flex;
+    align-items: flex-end;
+    background: transparent;
+}
+
+.errorMessage {
+    font-size: 10px;
+    color: rgb(121, 0, 0);
+    padding-block: 1.3em .4em;
+    line-height: 26px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+@media screen and (min-width: 768px) {
+    .errorMessage {
+        font-size: 11px;
+    }
+}
