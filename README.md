@@ -6,7 +6,7 @@
 
 **Difficulty level** : Beginner
 
-**How To Start Application** : Install all Modules then run the application
+**How To Start Application** : Install all Modules then run the application, Make sure that your node version is version 18 
 
 **How To Install All Modules** : Run "npm run installmodules"
 

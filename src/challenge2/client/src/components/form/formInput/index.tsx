@@ -22,7 +22,7 @@ export default function FormInput(props: FormInputProps) {
 }
 
 export function FormDropdown(props: FormDropdownProps) {
-  const { name, label, onChange, options } = props;
+  const { name, label, onChange, options, loading } = props;
   return (
     <div>
       <label className="formInputLabel" htmlFor={name}>
@@ -34,6 +34,8 @@ export function FormDropdown(props: FormDropdownProps) {
         name={name}
         options={options}
         onChange={onChange}
+        isLoading={loading}
+        isDisabled={loading}
       />
     </div>
   );

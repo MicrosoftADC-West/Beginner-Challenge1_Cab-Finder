@@ -1,12 +1,13 @@
 import "./style.css";
 import FormButtonProps from "./type";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function FormButton(props: FormButtonProps) {
-  const { content } = props;
+  const { content, loading } = props;
 
   return (
-    <button type="submit" className="form-button">
-      {content}
+    <button disabled={loading} type="submit" className="form-button">
+      {loading ? <CircularProgress size={30} /> : <span> {content}</span>}
     </button>
   );
 }

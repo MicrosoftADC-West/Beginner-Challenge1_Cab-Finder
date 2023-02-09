@@ -18,11 +18,11 @@ type RideType = {
   estimated_arrival_time: string;
 };
 
-function RidesTable() {
-  const [rides, setRides] = useState<RideType[]>([]);
-  const [rideFetching, setRideFetching] = useState<boolean>(false);
+function RidesTable({ setState, state }: { setState: any; state: any }) {
+  // const [rides, setState] = useState<RideType[]>([]);
+  // const [rideFetching, setRideFetching] = useState<boolean>(false);
   const [initialRideValues, setInitialRidesValues] = useState<RideType[]>([]);
-  const [rideServices, setRideServices] = useState<any>([]);
+  const [rideServices, setStateervices] = useState<any>([]);
   const [filterByKeyword, setFilterByKeyword] = useState<String>("");
   const [deleteRide, setDeleteRide] = useState<{
     status: boolean;
@@ -33,21 +33,25 @@ function RidesTable() {
   const rideService = new RideServicesService();
 
   const getRides = async () => {
-    setRideFetching(true);
+    setState({ ...state, loading: true });
     try {
       const response = await service.getAllRides();
-      setRides(response?.data);
+      setState(response?.data);
       setInitialRidesValues(response?.data);
-      setRideFetching(false);
+      setState({ ...state, loading: false, data: response?.data });
+
+      // setRideFetching(false);
     } catch (error) {
+      setState({ ...state, loading: false, error: error });
+
       console.log(error);
-      setRideFetching(false);
+      // setRideFetching(false);
     }
   };
   const getRideServices = async () => {
     try {
       const response = await rideService.getAllRideServices();
-      setRideServices(response?.data);
+      setStateervices(response?.data);
     } catch (error) {
       console.log(error);
     }
@@ -60,12 +64,12 @@ function RidesTable() {
 
   useEffect(() => {
     if (filterByKeyword === "") {
-      setRides(initialRideValues);
+      setState(initialRideValues);
     } else {
       const temprides = initialRideValues.filter(
         (ride) => ride?.rideservice_name === filterByKeyword
       );
-      setRides(temprides);
+      setState({ ...state, data: temprides });
     }
   }, [filterByKeyword]);
   return (
@@ -78,8 +82,8 @@ function RidesTable() {
         />
       )}
       <SortAndSearch
-        state={rides}
-        setState={setRides}
+        state={state}
+        setState={setState}
         searchKey="ride_id"
         sortByOptions={reformatForReactSelect(
           rideServices,
@@ -92,7 +96,7 @@ function RidesTable() {
         initialState={initialRideValues}
       />
 
-      {rideFetching ? (
+      {state.loading ? (
         <TableSkeletonLoader
           rowNo={20}
           columnValues={[
@@ -100,6 +104,7 @@ function RidesTable() {
             "Ride Route",
             "Ride Service",
             "Ride Arrival Time",
+            "Ride Price",
             "Action",
           ]}
         />
@@ -111,19 +116,21 @@ function RidesTable() {
               <th>Ride Route</th>
               <th>Ride Service</th>
               <th>Ride Arrival Time</th>
+              <th>Ride Price</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {rides.map((data) => (
+            {state.data?.map((data: any) => (
               <tr key={data.ride_id}>
                 <td>{data.ride_id}</td>
                 <td>{data.location_description}</td>
                 <td>{data.rideservice_name}</td>
-                <td>{`${data.estimated_arrival_time.slice(
+                <td>{`${data?.estimated_arrival_time.slice(
                   0,
                   10
-                )} ${data.estimated_arrival_time.slice(11, 19)}`}</td>
+                )} ${data?.estimated_arrival_time.slice(11, 19)}`}</td>
+                <td>100</td>
                 <td>
                   <Button
                     fullWidth
@@ -156,13 +163,17 @@ const DeleteRideModal = ({
   reRenderFunction: () => void;
 }) => {
   const service = new RideService();
+  const [deleting, setDeleting] = useState<boolean>(false);
   const deleteRide = async () => {
+    setDeleting(true);
     try {
       await service.deleteRideWithId(id);
       onClose();
       reRenderFunction();
+      setDeleting(false);
     } catch (error) {
       console.log(error);
+      setDeleting(false);
     }
   };
   return (
@@ -189,6 +200,7 @@ const DeleteRideModal = ({
             variant="contained"
             color="red"
             size="xs"
+            loading={deleting}
             onClick={deleteRide}
             width="100px"
           />

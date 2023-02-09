@@ -22,13 +22,13 @@ export default function SortAndSearch({
   const handleUpdateStateBasedOnSearch = (searchTerm: string) => {
     if (searchTerm) {
       console.log(searchTerm);
-      const filteredStates = state.filter(
+      const filteredStates = state.data.filter(
         (stateItem: any) => stateItem[searchKey] === parseInt(searchTerm)
       );
 
-      setState(filteredStates);
+      setState({ ...state, data: filteredStates });
     } else {
-      setState(initialState);
+      setState({ ...state, data: initialState });
     }
   };
 
@@ -52,8 +52,7 @@ export default function SortAndSearch({
         <Select
           className="basic-single"
           classNamePrefix="select"
-          defaultValue={sortByOptions[0]}
-          name="color"
+          name="sort"
           options={sortByOptions}
           onChange={sortFunction}
         />

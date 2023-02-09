@@ -11,4 +11,5 @@ export type FormDropdownProps = {
   label: string;
   onChange: any;
   options: { value: string; label: string }[];
+  loading?: boolean;
 };

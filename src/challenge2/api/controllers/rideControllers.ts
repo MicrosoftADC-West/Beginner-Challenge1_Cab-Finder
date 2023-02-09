@@ -11,21 +11,24 @@ import { RowDataPacket } from "mysql2";
 
 // Get All Rides
 export const getRides = (req: Request, res: Response) => {
-  const { start_location, end_location } = req.body;
+  const { start_location, end_location } = req.query as any;
+  console.log(req.query);
+
   if (!start_location || !end_location) {
     return res.status(400).json("Fill all detsails");
   }
   db.query(
     GET_ALL_RIDES_QUERIES,
     [
-      start_location.lat,
-      start_location.long,
-      end_location.lat,
-      end_location.long,
+      parseFloat(start_location.long),
+      parseFloat(start_location.lat),
+      parseFloat(end_location.long),
+      parseFloat(end_location.lat),
     ],
     (error, result: RowDataPacket[]) => {
       if (error) return res.json(error);
-      if (result.length) return res.status(200).json(result);
+      return res.status(200).json(result);
+    
     }
   );
 };

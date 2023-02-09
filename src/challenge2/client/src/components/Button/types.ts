@@ -7,4 +7,5 @@ export interface ButtonProps {
   onClick: any;
   size?: "xs" | "sm" | "md" | "lg" | "xl";
   width?:String
+  loading?:boolean
 }

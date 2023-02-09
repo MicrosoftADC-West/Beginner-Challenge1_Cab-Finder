@@ -1,9 +1,19 @@
 import { ButtonProps } from "./types";
 import "./Button.css";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function Button(props: ButtonProps) {
-  const { content, variant, color, disabled, fullWidth, onClick, size, width } =
-    props;
+  const {
+    content,
+    variant,
+    color,
+    disabled,
+    fullWidth,
+    onClick,
+    size,
+    width,
+    loading,
+  } = props;
   const fontSize = () => {
     switch (size) {
       case "xs":
@@ -55,7 +65,7 @@ function Button(props: ButtonProps) {
       style={style() as any}
       onClick={onClick}
     >
-      {content}
+      {loading ? <CircularProgress size={30} /> : <span> {content}</span>}
     </button>
   );
 }

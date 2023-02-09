@@ -28,7 +28,10 @@ const CreateLocation = ({ onClose }: { onClose: () => void }) => {
   const handleCreatingLocation = async (e: any) => {
     e.preventDefault();
     const notFilled = handleValidateRequestBody(data);
-    if (notFilled) notify("error", `${notFilled} is not Filled`);
+    if (notFilled) {
+      notify("error", `${notFilled} is not Filled`);
+      return;
+    }
     setLocationCreating(true);
     try {
       const response = await service.createNewLocation(reformatObj(data));
@@ -36,9 +39,9 @@ const CreateLocation = ({ onClose }: { onClose: () => void }) => {
         setLocationCreating(false);
         handleResetFields();
         onClose();
+        window.location.reload();
       }
     } catch (error: any) {
-      console.error(error);
       notify("error", error?.message);
       setLocationCreating(false);
     }

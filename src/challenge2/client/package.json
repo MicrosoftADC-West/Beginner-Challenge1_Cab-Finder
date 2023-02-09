@@ -1,8 +1,10 @@
 {
-  "name": "nitprofile-frontend",
+  "name": "rider-frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/styled": "^11.10.5",
+    "@mui/material": "^5.11.8",
     "@types/node": "^17.0.45",
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
