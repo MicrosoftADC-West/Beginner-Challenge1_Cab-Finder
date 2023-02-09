@@ -29,7 +29,7 @@ const CreateLocation = ({ onClose }: { onClose: () => void }) => {
     e.preventDefault();
     const notFilled = handleValidateRequestBody(data);
     if (notFilled) {
-      notify("error", `${notFilled} is not Filled`);
+      notify("error", `${notFilled} is nots Filled`);
       return;
     }
     setLocationCreating(true);
