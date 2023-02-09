@@ -41,7 +41,7 @@ const getRideDetails = (locations, rides, rideservices) => {
 const getBestRideService = (locations, rides, rideservices) => {
   const rideDetails = getRideDetails(locations, rides, rideservices);
   const allPrices = rideDetails.map(detail => Number(detail.price));
-  const minPrice = Math.max(...allPrices);
+  const minPrice = Math.min(...allPrices);
 
   // find ride with lowest price
   const foundRide = rideDetails.find(ride => ride.price === minPrice);
@@ -98,11 +98,17 @@ const getBestRideServiceForEachTrip = (locations, rides, rideservices) => {
   });
 };
 
-// const rideDetails = getRideDetails(locationsJson, ridesJson, rideservicesJson);
+// get rides with their prices
+const rideDetails = getRideDetails(locationsJson, ridesJson, rideservicesJson);
 
 // console.log(rideDetails);
 
 // get best price
-const bestRide = getBestRideServiceForEachTrip(locationsJson, ridesJson, rideservicesJson);
+const bestRide = getBestRideService(locationsJson, ridesJson, rideservicesJson);
 
-console.log(bestRide);
+// console.log(bestRide);
+
+// get best price for each
+const bestRideForEach = getBestRideServiceForEachTrip(locationsJson, ridesJson, rideservicesJson);
+
+// console.log(bestRideForEach);
