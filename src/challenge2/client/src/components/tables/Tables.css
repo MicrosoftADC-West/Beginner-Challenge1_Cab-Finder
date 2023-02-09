@@ -1,0 +1,146 @@
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    background: white;
+}
+
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    color: rgb(75, 68, 68);
+}
+
+td {
+    padding: 22px;
+    border-bottom: 1px solid rgb(240, 239, 239);
+}
+
+th {
+    background-color: #f2f2f2;
+    margin-bottom: 10px;
+    color: var(--green);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.04);
+    text-align: center;
+    width: 100vw;
+}
+
+td:nth-of-type(5) {
+    text-align: center;
+}
+
+.verified-user {
+    background-color: rgb(148, 248, 148);
+    color: rgb(53, 124, 53);
+    padding: 8px 35px;
+    border-radius: 4px;
+}
+
+.unverified-user {
+    background-color: rgb(250, 178, 178);
+    color: rgb(126, 31, 31);
+    padding: 8px 35px;
+    border-radius: 4px;
+}
+
+tbody button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: #f2f2f2;
+    color: var(--green);
+    border: 1px solid var(--green);
+    padding: 7px 35px;
+    border-radius: 4px;
+    transition: all 200ms ease-in-out;
+
+}
+
+tbody button:hover {
+    background-color: var(--green);
+    color: #f2f2f2;
+    border: 1px solid #f2f2f2;
+}
+
+.table-mobile {
+    display: none;
+}
+
+.table-desktop {
+    display: block;
+}
+
+@media only screen and (max-width: 768px) {
+
+    /* table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    thead tr {
+        position: relative;
+        top: -99999px;
+        left: -99999px;
+    }
+
+    tr {
+        border: 1px solid #ccc;
+    }
+
+    td {
+        border: none;
+        border-bottom: 1px solid #ccc;
+        position: relative;
+        padding-left: 50%;
+    }
+
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+    }
+
+    td:nth-of-type(1):before {
+        content: "Name";
+    }
+
+    td:nth-of-type(2):before {
+        content: "Email";
+    }
+
+    td:nth-of-type(3):before {
+        content: "Phone Number";
+    }
+
+    td:nth-of-type(5):before {
+        content: "Acquired Certificate";
+    } */
+    .table-desktop {
+        display: none;
+    }
+
+    .table-mobile {
+        display: block;
+    }
+
+    td {
+        border: none;
+        border-left: 1px solid #ccc;
+        position: relative;
+        padding: 12px;
+    }
+
+    td:nth-of-type(3) {
+        text-align: center;
+    }
+
+}

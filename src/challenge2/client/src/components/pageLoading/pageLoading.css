@@ -1,0 +1,23 @@
+.page-loading {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.page-loading img {
+  width: 300px;
+  animation: spin 2s infinite alternate;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    width: 300px;
+  }
+  to {
+    transform: rotate(360deg);
+    width: 200px;
+  }
+}
