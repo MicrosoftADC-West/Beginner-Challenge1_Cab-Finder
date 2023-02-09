@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "ThKGlqz4q60QJtXq2aK4h4FXy7I3WK4LCYZATywwo2Vi5i+FnXrB3OxZvp8xXdU9Kpds7nV+d9lDBsR8h65uXw==",
+  "success": true,
+  "projectFilePath": "C:\\ADC-Test\\Src\\TestSpace\\TestSpace.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lukii\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
+    "C:\\Users\\lukii\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}

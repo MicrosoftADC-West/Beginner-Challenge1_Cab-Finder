@@ -1,0 +1,12 @@
+C:\ADC-Test\Src\Cab-Finder-Lib\bin\Debug\net6.0\Cab-Finder-Lib.deps.json
+C:\ADC-Test\Src\Cab-Finder-Lib\bin\Debug\net6.0\Cab-Finder-Lib.dll
+C:\ADC-Test\Src\Cab-Finder-Lib\bin\Debug\net6.0\Cab-Finder-Lib.pdb
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.csproj.AssemblyReference.cache
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.AssemblyInfoInputs.cache
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.AssemblyInfo.cs
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.csproj.CoreCompileInputs.cache
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.dll
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\refint\Cab-Finder-Lib.dll
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\Cab-Finder-Lib.pdb
+C:\ADC-Test\Src\Cab-Finder-Lib\obj\Debug\net6.0\ref\Cab-Finder-Lib.dll

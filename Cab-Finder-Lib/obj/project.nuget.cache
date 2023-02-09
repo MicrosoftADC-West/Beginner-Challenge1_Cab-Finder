@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "iBii4quYwgsit9SYs7PRt/67CluruC6dUu+7kqw8XdWlPICRkENJGBhgjYd4JPk2OmkdpI+TK0NdhqwQ0zHu4g==",
+  "success": true,
+  "projectFilePath": "C:\\ADC-Test\\Src\\Cab-Finder-Lib\\Cab-Finder-Lib.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\lukii\\.nuget\\packages\\csvhelper\\30.0.1\\csvhelper.30.0.1.nupkg.sha512",
+    "C:\\Users\\lukii\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+  ],
+  "logs": []
+}
