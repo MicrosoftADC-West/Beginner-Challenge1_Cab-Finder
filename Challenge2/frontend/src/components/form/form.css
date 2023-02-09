@@ -1,0 +1,17 @@
+.label-wrapper {
+  margin-top: 20px;
+}
+
+.subLabel {
+  font-size: var(--mini-paragraph);
+}
+
+.bottom-label {
+  font-size: var(--mini-paragraph);
+}
+
+.formfeedback {
+  color: rgb(209, 8, 8);
+  font-size: var(--mini-paragraph);
+  margin: 10px 0 0 0;
+}

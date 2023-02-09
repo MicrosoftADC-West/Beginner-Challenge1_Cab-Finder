@@ -1,0 +1,43 @@
+.FormButton {
+  border-radius: 8px;
+  border: none;
+  color: var(--white);
+  margin: 20px 0 20px 0;
+  cursor: pointer;
+  font-size: var(--small-paragraph);
+  height: 50px;
+  padding: 10px 50px;
+  background-color: var(--blue);
+  font-weight: 500;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FormButton:hover {
+  background-color: var(--light-blue);
+}
+
+.FormButton.formbutton-error,
+.FormButton.formbutton-error:hover {
+  background-color: var(--modal-background);
+  color: var(--black);
+  cursor: not-allowed;
+}
+
+.FormButton.formbutton-loading,
+.FormButton.formbutton-loading:hover {
+  cursor: not-allowed;
+}
+
+.FormButton .spinner {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  stroke: #ffffff;
+}
+
+.formbutton-small {
+  font-size: var(--mini-paragraph);
+}

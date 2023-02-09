@@ -1,0 +1,112 @@
+.FormSelect {
+  padding-top: 10px;
+}
+
+.FormSelect .css-13cymwt-control,
+.FormSelect .css-t3ipsp-control {
+  position: relative;
+  height: 60px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--input-background);
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+  outline: none;
+  padding: 0px 40px 0px 20px;
+  margin-top: 8px;
+  font-size: var(--small-paragraph);
+  letter-spacing: 0.04em;
+}
+
+.FormSelect .css-13cymwt-control:hover,
+.FormSelect .css-t3ipsp-control:hover {
+  border: none;
+  box-shadow: none;
+}
+
+.FormSelect .css-13cymwt-control::after,
+.FormSelect .css-t3ipsp-control::after {
+  content: "S";
+  position: absolute;
+  color: transparent;
+  right: 20px;
+  height: 8px;
+  width: 12px;
+  background-image: url("../../../assets/icons/angleDown.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+.FormSelect .css-qbdosj-Input {
+  height: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+.FormSelect .css-qbdosj-Input input {
+  height: 60px;
+}
+
+.FormSelect .css-1jqq78o-placeholder {
+  font-size: var(--normal-paragraph);
+  font-weight: 400;
+  font-family: "DM Sans", sans-serif;
+  letter-spacing: 0.001em;
+}
+
+.FormSelect .css-1fdsijx-ValueContainer,
+.FormSelect .css-g1d714-ValueContainer {
+  padding: 0;
+}
+
+.FormSelect .css-1hb7zxy-IndicatorsContainer,
+.FormSelect .css-1wy0on6 {
+  display: none;
+}
+
+.FormSelect-small .css-13cymwt-control,
+.FormSelect-small .css-t3ipsp-control,
+.FormSelect-small .css-qbdosj-Input,
+.FormSelect-small .css-qbdosj-Input input {
+  height: 50px;
+}
+
+.FormSelect-small label {
+  font-size: var(--small-paragraph);
+}
+
+.FormSelect-small .css-1jqq78o-placeholder {
+  font-size: var(--small-paragraph);
+}
+
+.FormSelect-small .css-1nmdiq5-menu {
+  font-size: var(--small-paragraph);
+}
+
+.FormSelect.transparent .css-13cymwt-control,
+.FormSelect.transparent .css-t3ipsp-control {
+  background-color: var(--white);
+  border: 1px solid var(--modal-background);
+}
+
+.FormSelect.transparent .css-13cymwt-control:hover,
+.FormSelect.transparent .css-t3ipsp-control:hover {
+  border: 1px solid var(--modal-background);
+}
+
+@media (max-width: 35rem) {
+  .FormSelect label {
+    font-size: var(--small-paragraph);
+  }
+  .FormSelect .css-13cymwt-control,
+  .FormSelect .css-t3ipsp-control,
+  .FormSelect .css-qbdosj-Input,
+  .FormSelect .css-qbdosj-Input input {
+    height: 50px;
+  }
+  .FormSelect .css-1jqq78o-placeholder {
+    font-size: var(--small-paragraph);
+  }
+}

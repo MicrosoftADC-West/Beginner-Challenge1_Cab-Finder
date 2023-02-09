@@ -1,0 +1,38 @@
+.rides {
+  width: 500px;
+}
+
+.select-ride {
+  max-width: 700px;
+}
+
+.page-head {
+  height: 100px;
+  padding: 20px 10px;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--blue);
+  background-image: url("../../assets/images/curlyPattern.jpg");
+  background-size: cover;
+  color: var(--white);
+}
+
+.page-body {
+  border: 1px solid #eee;
+  background-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0px 1px 20px rgb(233, 233, 233);
+  backdrop-filter: blur(3px);
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 30px 30px;
+}
+
+@media (max-width: 60rem) {
+  .rides {
+    width: 100%;
+  }
+}

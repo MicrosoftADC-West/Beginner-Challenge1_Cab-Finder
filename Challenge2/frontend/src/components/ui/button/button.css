@@ -1,0 +1,44 @@
+.button-wrapper button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: var(--mini-paragraph);
+  font-family: "DM Sans", sans-serif;
+  font-weight: 500;
+  padding: 8px 15px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+.button-wrapper button img {
+  width: 15px;
+  margin-right: 10px;
+}
+
+.button-wrapper button.big {
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.button-wrapper button.long {
+  width: 180px;
+}
+
+.button-wrapper button.no-text {
+  margin-right: 10px;
+}
+
+.button-wrapper button.no-text img {
+  margin-right: 0px;
+}
+
+.button-wrapper button.disabled {
+  cursor: not-allowed;
+}
+
+.button-wrapper button svg {
+  width: 16px;
+}

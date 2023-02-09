@@ -1,0 +1,140 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  bottom: 0;
+  z-index: 9;
+}
+
+.modal-background {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+
+.slide-modal .modal-card {
+  background-color: white;
+  position: fixed;
+  width: 350px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: all 0.3s ease;
+  z-index: 10;
+  overflow-y: scroll;
+  box-shadow: 0px 4px 24px rgba(191, 191, 191, 0.25);
+  padding-bottom: 100px;
+}
+
+.slide-modal .modal-card.hide {
+  right: -350px;
+}
+
+.slide-modal .modal-card::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.slide-modal .modal-card::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 20px;
+}
+
+.modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.slide-modal .modal-header {
+  padding: 0 15px;
+}
+
+.slide-modal .modal-header p {
+  display: flex;
+  align-items: center;
+}
+
+.slide-modal .modal-header p img {
+  margin-right: 5px;
+}
+
+.slide-modal .modal-header > img {
+  width: 15px;
+  cursor: pointer;
+}
+
+@media (max-width: 25rem) {
+  .slide-modal .modal-card {
+    width: 260px;
+  }
+
+  .slide-modal .modal-card.hide {
+    right: -260px;
+  }
+
+  .slide-modal .modal-header {
+    padding: 0 10px;
+  }
+}
+
+/* PopModal */
+.pop-modal .modal-background {
+  background-color: rgba(0, 0, 0, 0.1);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.pop-modal .modal-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background-color: var(--white);
+  border-radius: 5px;
+  border: 1px solid var(--white);
+  transform: translate(-50%, -50%) scale(0.7, 0.7);
+  transition: all 0.2s ease;
+}
+
+.pop-modal .modal-card.scroll {
+  overflow-y: scroll;
+}
+
+.pop-modal .modal-card.scroll::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.pop-modal .modal-card.scroll::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 20px;
+}
+
+.pop-modal .modal-card.show {
+  transform: translate(-50%, -50%) scale(1, 1);
+}
+
+.pop-modal .modal-header {
+  padding: 10px;
+}
+
+.pop-modal .modal-header p {
+  margin: 0;
+}
+
+.pop-modal .modal-header img {
+  width: 10px;
+  cursor: pointer;
+}
+
+@media (max-width: 60rem) {
+  .pop-modal {
+    left: 0;
+  }
+  .pop-modal .modal-card {
+    width: 80%;
+  }
+}
