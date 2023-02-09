@@ -1,0 +1,2 @@
+use " npm run challengeone" to run the first challenge both task one and task two
+use " npm run challengetwo" to run the second challenge
