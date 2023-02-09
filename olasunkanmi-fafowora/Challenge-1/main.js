@@ -84,7 +84,7 @@ function Deg2Rad(deg) {
 
 // output ride with prices - answer for challenge 1 - Task 1
 console.log("Answer for Challenge 1, Task 1:");
-OutputToHTML(CalculateRidePrice(locationData, rideServicesData), "#challenge-1-task-2");
+OutputToHTML(CalculateRidePrice(locationData, rideServicesData), "#challenge-1-task-1");
 
 // Task 2
 // check if array object is present
@@ -220,4 +220,4 @@ function OutputToHTML(objectToOutput, id){
     container.innerHTML = html;
 }
 
-OutputToHTML(CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithPrices), "#challenge-1-task-1");
+OutputToHTML(CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithPrices), "#challenge-1-task-2");
