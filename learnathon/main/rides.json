@@ -1206,12 +1206,6 @@
         "estimated_arrival_time": "1995-07-12 00:00:00+00:00"
     },
     {
-        "ride_id": 202,
-        "location_id": 2,
-        "rideservice_id": 1,
-        "estimated_arrival_time": "1995-07-12 00:00:00+00:00"
-    },
-    {
         "ride_id": 203,
         "location_id": 2,
         "rideservice_id": 2,
