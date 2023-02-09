@@ -39,7 +39,8 @@ function CalculateRidePrice(routeLists, rideServices) {
         ind++;
         rideWithPrices.push({
             ride_id: ind,
-            price_for_ride: parseFloat(CalculatePricePerKM(element, rideInKmWithLocations, rideServices))
+            price_for_ride: parseFloat(CalculatePricePerKM(element, rideInKmWithLocations, rideServices)),
+            estimated_arrival_time: element.estimated_arrival_time
         })
     }
 
@@ -83,7 +84,7 @@ function Deg2Rad(deg) {
 
 // output ride with prices - answer for challenge 1 - Task 1
 console.log("Answer for Challenge 1, Task 1:");
-console.table(CalculateRidePrice(locationData, rideServicesData));
+OutputToHTML(CalculateRidePrice(locationData, rideServicesData), "#challenge-1-task-2");
 
 // Task 2
 // check if array object is present
@@ -115,7 +116,7 @@ function GetLocationValues(locationId, ridesData) {
     }
     return allObjWithSameLocations;
 }
- 
+
 /**
  * Calculates the best price for each location 
  * outputing the service company, best price, and other details
@@ -140,7 +141,6 @@ function CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithP
             allSameLocationsArr.push(allObjsWithSameLocations);
         }
     }
-
     // best prices calculation
     let allPricesWithLocationAndService = [];
     for (let i = 0; i < allSameLocationsArr.length; i++) {
@@ -156,12 +156,17 @@ function CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithP
                 price: parseFloat(priceForService.price_for_ride),
                 service_company: serviceCompany.rideservice_name,
                 location_description: locationDescription.location_description,
-                location_id: locationDescription.location_id
+                location_id: locationDescription.location_id,
+                start_coord_lat: locationDescription.start_coord_lat,
+                start_coord_long: locationDescription.start_coord_long,
+                destination_coord_lat: locationDescription.destination_coord_lat,
+                destination_coord_long: locationDescription.destination_coord_long,
+                estimated_arrival_time: priceForService.estimated_arrival_time
             })
         }
         allPricesWithLocationAndService.push(priceForServicePerLocation);
     }
-
+    
     // sort array of objects
     for (let i = 0; i < allPricesWithLocationAndService.length; i++) {
         allPricesWithLocationAndService[i].sort((a, b) => (a.price > b.price) ? 1 : -1);
@@ -176,7 +181,13 @@ function CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithP
             service_company: allPriceObject.service_company,
             price: allPriceObject.price,
             location_id: allPriceObject.location_id,
-            location_description: allPriceObject.location_description
+            location_description: allPriceObject.location_description,
+            location_id: allPriceObject.location_id,
+            start_coord_lat: allPriceObject.start_coord_lat,
+            start_coord_long: allPriceObject.start_coord_long,
+            destination_coord_lat: allPriceObject.destination_coord_lat,
+            destination_coord_long: allPriceObject.destination_coord_long,
+            estimated_arrival_time: allPriceObject.estimated_arrival_time
         })
     }
 
@@ -188,4 +199,25 @@ function CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithP
 
 // Outputs answer for Challenge 1 - Task 2
 console.log("Answer for Challenge 1, Task 2:");
-console.table(CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithPrices));
+
+function OutputToHTML(objectToOutput, id){
+   let s = objectToOutput;
+      
+      var cols = [];
+      for (var k in s) {
+        for (var c in s[k]) {
+          if (cols.indexOf(c)===-1) cols.push(c);
+        }
+      }
+      var html = '<table class=tftable><thead><tr>'+
+          cols.map(function(c){ return '<th>'+c+'</th>' }).join('')+
+          '</tr></thead><tbody>';
+      for (var l in s) {
+        html += '<tr>'+cols.map(function(c){ return '<td>'+(s[l][c]||'')+'</td>' }).join('')+'</tr>';
+      }
+      html += '</tbody></table>';
+    let container = document.querySelector(id);
+    container.innerHTML = html;
+}
+
+OutputToHTML(CalculateBestPrice(locationData, ridesData, rideServicesData, rideWithPrices), "#challenge-1-task-1");
