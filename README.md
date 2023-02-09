@@ -1,5 +1,6 @@
 # Challenge Your Skills Learnathon
-# **Contoso Cheap Cab Finder**
+
+## **Contoso Cheap Cab Finder**
 
 **Duration** : 120 mins
 
@@ -36,27 +37,33 @@ The user should be able to sort the prices by ride service, price, and estimated
 
 **Database schema** :
 
-A "Rides" table with the following fields:
+A `Rides` table with the following fields:
 
-- ride\_id (primary key)
-- Location\_id (foreign key)
-- rideservice\_id
-- estimated\_arrival\_time
+|      | Rides           |       |
+|  --  | --------------- | ----- |
+| (PK) | ride_id         | INTEGER |
+| (FK) | Location_id     | INTEGER |
+| (FK) | rideservice_id  | INTEGER |
+|      | estimated_arrival_time | STRING |
 
-A "Locations" table with the following fields:
+A `Locations` table with the following fields:
 
-- location\_id (primary key)
-- location\_description
-- start\_coord\_long
-- start\_coord\_lat
-- destination\_coord\_long
-- destination\_coord\_lat
+|      | Locations       |       |
+|  --  | --------------- | ----- |
+| (PK) | location_id     | INTEGER |
+|      | location_description | STRING |
+|      | start_coord_long | FLOAT |
+|      | start_coord_lat  | FLOAT |
+|      | destination_coord_long | FLOAT |
+|      | destination_coord_lat | FLOAT |
 
-A "Ride Services" table with the following fields:
+A `Ride Services` table with the following fields:
 
-- rideservice\_id (primary key)
-- rideservice\_name (foreign key) (e.g., Uber, InDrive, Taxi, Bolt)
-- priceperkm
+|      | Ride Services   |       |
+|  --  | --------------- | ----- |
+| (PK) | rideservice_id  | INTEGER |
+|      | rideservice_name | STRING |
+|      | priceperkm      | INTEGER |
 
 **Challenge 1:**
 
@@ -96,72 +103,72 @@ The API contracts for the Ride Price Aggregator service would include the follow
 
 1. GET /rides - Retrieve a list of all available rides including prices between a given starting coordinates (long, lat) and destination coordinate (long, lat).
 
-Query Parameters:
+    Query Parameters:
 
-- start\_location (required): The starting coordinates for the ride.
-- end\_location (required): The destination coordinates for the ride.
+    - start\_location (required): The starting coordinates for the ride.
+    - end\_location (required): The destination coordinates for the ride.
 
-Response:
+    Response:
 
-- 200 OK: Returns a list of rides, including the price, ride service, and estimated arrival time for each ride.
-- 400 Bad Request: If the required query parameters are not provided.
-- 500 Internal Server Error: If there is an error fetching the data from the database or external API.
+    - 200 OK: Returns a list of rides, including the price, ride service, and estimated arrival time for each ride.
+    - 400 Bad Request: If the required query parameters are not provided.
+    - 500 Internal Server Error: If there is an error fetching the data from the database or external API.
 
-1. GET /rides/:id - Retrieve details for a specific ride.
+2. GET /rides/:id - Retrieve details for a specific ride.
 
-Path Parameters:
+    Path Parameters:
 
-- id (required): The ID of the ride to retrieve.
+    - id (required): The ID of the ride to retrieve.
 
-Response:
+    Response:
 
-- 200 OK: Returns the details for the specified ride, including the price, ride service, and estimated arrival time.
-- 404 Not Found: If the specified ride ID does not exist.
-- 500 Internal Server Error: If there is an error fetching the data from the database.
+    - 200 OK: Returns the details for the specified ride, including the price, ride service, and estimated arrival time.
+    - 404 Not Found: If the specified ride ID does not exist.
+    - 500 Internal Server Error: If there is an error fetching the data from the database.
 
-1. POST /rides - Add a new ride to the database.
+3. POST /rides - Add a new ride to the database.
 
-Request Body:
+    Request Body:
 
-- start\_location (required): The starting location for the ride.
-- end\_location (required): The destination location for the ride.
-- ride\_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
-- estimated\_arrival\_time (required): The estimated arrival time for the ride.
+    - start\_location (required): The starting location for the ride.
+    - end\_location (required): The destination location for the ride.
+    - ride\_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+    - estimated\_arrival\_time (required): The estimated arrival time for the ride.
 
-Response:
+    Response:
 
-- 201 Created: Returns the ID of the newly created ride.
-- 400 Bad Request: If any of the required fields are missing from the request body.
-- 500 Internal Server Error: If there is an error adding the ride to the database.
+    - 201 Created: Returns the ID of the newly created ride.
+    - 400 Bad Request: If any of the required fields are missing from the request body.
+    - 500 Internal Server Error: If there is an error adding the ride to the database.
 
-1. PUT /rides/:id - Update an existing ride in the database.
+4. PUT /rides/:id - Update an existing ride in the database.
 
-Path Parameters:
+    Path Parameters:
 
-id (required): The ID of the ride to update.
+    - id (required): The ID of the ride to update.
 
-Request Body:
+    Request Body:
 
-- start\_location: The starting location for the ride.
-- end\_location: The destination location for the ride.
-- ride\_service: The ride service (e.g., Uber, Lyft, Taxi) for the ride.
-- estimated\_arrival\_time: The estimated arrival time for the ride.
+    - start\_location: The starting location for the ride.
+    - end\_location: The destination location for the ride.
+    - ride\_service: The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+    - estimated\_arrival\_time: The estimated arrival time for the ride.
 
-Response:
+    Response:
 
-- 200 OK: Returns the updated ride details
-- 400 Bad Request: If any of the required fields are missing from the request body.
-- 404 Not Found: If the specified ride ID does not exist.
-- 500 Internal Server Error: If there is an error updating the ride in the database.
+    - 200 OK: Returns the updated ride details
+    - 400 Bad Request: If any of the required fields are missing from the request body.
+    - 404 Not Found: If the specified ride ID does not exist.
+    - 500 Internal Server Error: If there is an error updating the ride in the database.
 
-1. DELETE /rides/:id - Delete an existing ride from the database.
+5. DELETE /rides/:id - Delete an existing ride from the database.
 
-Path Parameters:
+    Path Parameters:
 
-- id (required): The ID of the ride to be deleted.
+    - id (required): The ID of the ride to be deleted.
 
-Response:
+    Response:
 
-- 204 No Content: If the ride is successfully deleted.
-- 404 Not Found: If the specified ride ID does not exist.
-- 500 Internal Server Error: If there is an error deleting the ride from the database.
+    - 204 No Content: If the ride is successfully deleted.
+    - 404 Not Found: If the specified ride ID does not exist.
+    - 500 Internal Server Error: If there is an error deleting the ride from the database.
