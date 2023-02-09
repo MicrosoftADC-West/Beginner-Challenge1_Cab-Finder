@@ -18,3 +18,5 @@ export const CREATE_NEW_LOCATION: string =
 
 export const CREATE_NEW_RIDE_SERVICE: string =
   "INSERT INTO rideservice (rideservice_name, priceperkm) VALUES (?,?)";
+
+export const UPDATE_RIDE: string = `UPDATE Ride SET location_id=?,rideservice_id=?,estimated_arrival_time=? where ride_id = ? `;

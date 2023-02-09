@@ -6,6 +6,7 @@ import {
   CREATE_RIDE_QUERY_3,
   GET_ALL_RIDES_QUERIES,
   GET_RIDE_BY_ID_QUERY,
+  UPDATE_RIDE,
 } from "../Queries";
 import { RowDataPacket } from "mysql2";
 
@@ -20,15 +21,20 @@ export const getRides = (req: Request, res: Response) => {
   db.query(
     GET_ALL_RIDES_QUERIES,
     [
-      parseFloat(start_location.long),
-      parseFloat(start_location.lat),
-      parseFloat(end_location.long),
-      parseFloat(end_location.lat),
+      parseFloat(start_location.long.trim()),
+      parseFloat(start_location.lat.trim()),
+      parseFloat(end_location.long.trim()),
+      parseFloat(end_location.lat.trim()),
     ],
     (error, result: RowDataPacket[]) => {
       if (error) return res.json(error);
+      console.log(result, [
+        parseFloat(start_location.long),
+        parseFloat(start_location.lat),
+        parseFloat(end_location.long),
+        parseFloat(end_location.lat),
+      ]);
       return res.status(200).json(result);
-    
     }
   );
 };
@@ -53,7 +59,6 @@ export const createRide = (req: Request, res: Response) => {
   if (!start_location || !end_location || !ride_service || !arrival_time) {
     return res.status(404).json("Fill all details");
   }
-  console.log(ride_service);
   // Get the Location id for the selected Ride
   db.query(
     CREATE_RIDE_QUERY_1,
@@ -70,7 +75,7 @@ export const createRide = (req: Request, res: Response) => {
           CREATE_RIDE_QUERY_3,
           [locationResult[0]?.location_id, ride_service, arrival_time],
           (createRideError, createRideResult: any) => {
-            if (createRideError) return res.json(createRideError);
+            if (createRideError) return res.status(404).json(createRideError);
             return res.status(201).json(createRideResult?.insertId);
           }
         );
@@ -82,13 +87,36 @@ export const createRide = (req: Request, res: Response) => {
 export const putRide = (req: Request, res: Response) => {
   const id = req.params.id;
   const { start_location, end_location, ride_service, arrival_time } = req.body;
+  // Get the Location id for the selected Ride
+  db.query(
+    CREATE_RIDE_QUERY_1,
+    [
+      parseFloat(start_location.long),
+      parseFloat(start_location.lat),
+      parseFloat(end_location.long),
+      parseFloat(end_location.lat),
+    ],
+    (error, locationResult: RowDataPacket[]) => {
+      if (error) return res.json(error);
+      if (locationResult) {
+        db.query(
+          UPDATE_RIDE,
+          [locationResult[0]?.location_id, ride_service, arrival_time, id],
+          (updateRideError, updateRideResult: any) => {
+            if (updateRideError) return res.status(404).json(updateRideError);
+            return res.status(200).json(updateRideResult);
+          }
+        );
+      }
+    }
+  );
 };
 export const deleteRide = (req: Request, res: Response) => {
   const id = req.params.id;
   if (!id) return res.status(404).json("No Id");
   const query = `DELETE FROM Ride WHERE ride_id = ?`;
   db.query(query, [id], (error, result) => {
-    if (error) return res.json(error);
+    if (error) return res.status(404).json(error);
 
     return res.status(204).json("");
   });

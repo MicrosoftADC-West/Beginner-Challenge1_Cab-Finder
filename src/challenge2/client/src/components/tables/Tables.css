@@ -72,6 +72,13 @@ tbody button:hover {
     display: block;
 }
 
+.action_buttons {
+    display: flex;
+    /* gap: 1em; */
+    align-items: center;
+    /* justify-content: space-between; */
+}
+
 @media only screen and (max-width: 768px) {
 
     /* table,

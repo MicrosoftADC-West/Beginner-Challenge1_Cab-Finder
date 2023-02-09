@@ -15,6 +15,9 @@ class RideService {
   createNewRide(data: CreateRideRequestDataType) {
     return axios.post(`${API_URL}/rides`, data);
   }
+  updateRide(data: CreateRideRequestDataType, id: number) {
+    return axios.put(`${API_URL}/rides/${id}`, data);
+  }
   deleteRideWithId(id: String) {
     return axios.delete(`${API_URL}/rides/${id}`);
   }

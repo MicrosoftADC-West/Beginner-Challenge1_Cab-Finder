@@ -10,6 +10,12 @@ import RideService from "../../services/ride-service";
 import RideServicesService from "../../services/rideServices-service";
 import reformatForReactSelect from "../../utils/reformatForReactSelect";
 import { TableSkeletonLoader } from "../skeletonLoaders/TableSkeletonLoader";
+import FormButton from "../form/formButton";
+import FormInput, { FormDropdown } from "../form/formInput";
+import Header from "../header";
+import { CreateRideRequestDataType } from "../../services/ride-service/types";
+import notify from "../../helpers/notify";
+import LocationService from "../../services/location-service";
 
 type RideType = {
   ride_id: string;
@@ -28,6 +34,10 @@ function RidesTable({ setState, state }: { setState: any; state: any }) {
     status: boolean;
     id: string;
   }>({ status: false, id: "" });
+  const [editRide, setEditRide] = useState<{
+    status: boolean;
+    data: any;
+  }>({ status: false, data: "" });
 
   const service = new RideService();
   const rideService = new RideServicesService();
@@ -81,6 +91,13 @@ function RidesTable({ setState, state }: { setState: any; state: any }) {
           reRenderFunction={getRides}
         />
       )}
+      {editRide.status && (
+        <EditRideModal
+          onClose={() => setEditRide({ status: false, data: "" })}
+          data={editRide.data}
+          reRenderFunction={getRides}
+        />
+      )}
       <SortAndSearch
         state={state}
         setState={setState}
@@ -131,9 +148,16 @@ function RidesTable({ setState, state }: { setState: any; state: any }) {
                   10
                 )} ${data?.estimated_arrival_time.slice(11, 19)}`}</td>
                 <td>100</td>
-                <td>
+
+                <td className="action_buttons">
                   <Button
-                    fullWidth
+                    content="Edit Ride"
+                    variant="contained"
+                    color="green"
+                    size="xs"
+                    onClick={() => setEditRide({ status: true, data })}
+                  />
+                  <Button
                     content="Delete Ride"
                     variant="contained"
                     color="red"
@@ -205,6 +229,177 @@ const DeleteRideModal = ({
             width="100px"
           />
         </div>
+      </div>
+    </PopModal>
+  );
+};
+
+const EditRideModal = ({
+  onClose,
+  data,
+  reRenderFunction,
+}: {
+  onClose: () => void;
+  data: any;
+  reRenderFunction: () => void;
+}) => {
+  // Services
+  const locationService = new LocationService();
+  const rideService = new RideServicesService();
+  const ride = new RideService();
+
+  // States
+  const [rideCreating, setRideCreating] = useState<boolean>(false);
+  const [locations, setLocations] = useState<any[]>([]);
+  const [rideServices, setRideServices] = useState<any[]>([]);
+  const [createRideRequestData, setCreateRideRequestData] =
+    useState<CreateRideRequestDataType>({
+      start_location: {
+        lat: "",
+        long: "",
+      },
+      end_location: {
+        lat: "",
+        long: "",
+      },
+      arrival_time: data.estimated_arrival_time.slice(0, 10),
+      ride_service: "",
+    });
+  console.log(data);
+
+  // Api Services
+  const getLocations = async () => {
+    try {
+      const response = await locationService.getAllLocations();
+      setLocations(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getRideServices = async () => {
+    try {
+      const response = await rideService.getAllRideServices();
+      setRideServices(response?.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleGetLocation = (val: { value: string; label: string }) => {
+    const selectedLocation = locations.filter(
+      (location) => location.location_id === val.value
+    );
+    const {
+      destination_coord_lat,
+      destination_coord_long,
+      start_coord_lat,
+      start_coord_long,
+    } = selectedLocation[0];
+    setCreateRideRequestData({
+      ...createRideRequestData,
+      start_location: { lat: start_coord_lat, long: start_coord_long },
+      end_location: {
+        lat: destination_coord_lat,
+        long: destination_coord_long,
+      },
+    });
+  };
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    if (
+      !createRideRequestData.start_location.lat &&
+      !createRideRequestData.start_location.long &&
+      !createRideRequestData.end_location.lat &&
+      !createRideRequestData.end_location.long
+    ) {
+      notify("error", `LOCATION is not filled`);
+      return;
+    }
+    const validationResult = handleValidateData(createRideRequestData);
+
+    if (validationResult) {
+      notify("error", `${validationResult.toLocaleUpperCase()} is not filled`);
+      return;
+    }
+    setRideCreating(true);
+    try {
+      const response = await ride.updateRide(
+        createRideRequestData,
+        data.ride_id
+      );
+      if (response.status === 200) {
+        window.location.reload();
+      }
+      setRideCreating(false);
+    } catch (error) {
+      console.log(error);
+      setRideCreating(false);
+    }
+  };
+  const handleValidateData = (obj: CreateRideRequestDataType) => {
+    for (let key in obj) {
+      if (!obj[key as keyof CreateRideRequestDataType]) {
+        return key;
+      }
+    }
+  };
+
+  useEffect(() => {
+    getLocations();
+    getRideServices();
+  }, []);
+
+  return (
+    <PopModal height="300px" width="500px" onClose={onClose}>
+      <div>
+        <Header content="Update Ride" size="sm" />
+        <form onSubmit={handleSubmit}>
+          <div className="form-container">
+            <FormDropdown
+              name="locations"
+              label="Locations"
+              onChange={handleGetLocation}
+              options={reformatForReactSelect(
+                locations,
+                "location_id",
+                "location_description"
+              )}
+            />
+            <FormDropdown
+              name="ride_services"
+              label="Ride Service"
+              onChange={(value: { value: string; label: string }) =>
+                setCreateRideRequestData({
+                  ...createRideRequestData,
+                  ride_service: value.value,
+                })
+              }
+              options={reformatForReactSelect(
+                rideServices,
+                "rideservice_id",
+                "rideservice_name"
+              )}
+            />
+            <FormInput
+              name="arrival_date"
+              label="Estimated Arrival Time"
+              value={createRideRequestData.arrival_time}
+              onChange={(e: any) =>
+                setCreateRideRequestData({
+                  ...createRideRequestData,
+                  arrival_time: e.target.value,
+                })
+              }
+              type="date"
+            />
+          </div>
+          <span className="location_toggler">
+            Location not shown above, click here to manually input co-ordinates
+          </span>
+          <FormButton content="Update" loading={rideCreating} />
+        </form>
       </div>
     </PopModal>
   );

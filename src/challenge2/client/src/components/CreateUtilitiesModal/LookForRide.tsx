@@ -31,6 +31,7 @@ const LookForRide = ({
     loading: boolean;
     error: any;
   }>({ data: [], loading: false, error: null });
+  const [useCoordinates, setUseCoordinates] = useState<boolean>(false);
   const [createRideRequestData, setCreateRideRequestData] = useState<any>({
     start_location: {
       lat: "",
@@ -74,12 +75,12 @@ const LookForRide = ({
     });
   };
 
-  const getRides = async (e:any) => {
-    e.preventDefault()
+  const getRides = async (e: any) => {
+    e.preventDefault();
     if (
-      !createRideRequestData.start_location.lat &&
-      !createRideRequestData.start_location.long &&
-      !createRideRequestData.end_location.lat &&
+      !createRideRequestData.start_location.lat ||
+      !createRideRequestData.start_location.long ||
+      !createRideRequestData.end_location.lat ||
       !createRideRequestData.end_location.long
     ) {
       notify("error", `LOCATION is not filled`);
@@ -104,20 +105,96 @@ const LookForRide = ({
       <div>
         <Header content="Look for a Ride" size="sm" />
         <form onSubmit={getRides}>
-          <div>
-            <FormDropdown
-              name="locations"
-              label="Locations"
-              onChange={handleGetLocation}
-              options={reformatForReactSelect(
-                locations.data,
-                "location_id",
-                "location_description"
-              )}
-              loading={locations.loading}
-            />
-          </div>
-          <span className="location_toggler">Manually enter co-ordinates</span>
+          {useCoordinates ? (
+            <div className="form-container">
+              <FormInput
+                name="start_longtitude"
+                label="Starting Longtitude"
+                value={createRideRequestData.start_location.long}
+                onChange={(e: any) =>
+                  setCreateRideRequestData({
+                    ...createRideRequestData,
+                    start_location: {
+                      ...createRideRequestData.start_location,
+                      long: e.target.value,
+                    },
+                  })
+                }
+                placeholder="3.6000"
+                type="number"
+              />
+              <FormInput
+                name="start_latitude"
+                label="Starting Latitude"
+                value={createRideRequestData.start_location.lat}
+                onChange={(e: any) =>
+                  setCreateRideRequestData({
+                    ...createRideRequestData,
+                    start_location: {
+                      ...createRideRequestData.start_location,
+                      lat: e.target.value,
+                    },
+                  })
+                }
+                placeholder="3.87772"
+                type="number"
+              />
+              <FormInput
+                name="destination_longtitude"
+                label="Destination Longitude"
+                value={createRideRequestData.end_location.long}
+                onChange={(e: any) =>
+                  setCreateRideRequestData({
+                    ...createRideRequestData,
+                    end_location: {
+                      ...createRideRequestData.end_location,
+                      long: e.target.value,
+                    },
+                  })
+                }
+                placeholder="6.1112"
+                type="number"
+              />
+              <FormInput
+                name="destination_latitude"
+                label="Destination Latitude"
+                value={createRideRequestData.end_location.lat}
+                onChange={(e: any) =>
+                  setCreateRideRequestData({
+                    ...createRideRequestData,
+                    end_location: {
+                      ...createRideRequestData.end_location,
+                      lat: e.target.value,
+                    },
+                  })
+                }
+                placeholder="9.112"
+                type="number"
+              />
+            </div>
+          ) : (
+            <div>
+              <FormDropdown
+                name="locations"
+                label="Locations"
+                onChange={handleGetLocation}
+                options={reformatForReactSelect(
+                  locations.data,
+                  "location_id",
+                  "location_description"
+                )}
+                loading={locations.loading}
+              />
+            </div>
+          )}
+          <span
+            className="location_toggler"
+            onClick={() => setUseCoordinates(!useCoordinates)}
+          >
+            {useCoordinates
+              ? "Select Location Automatically"
+              : "Manually enter co-ordinates"}
+          </span>
           <FormButton content="Search" />
         </form>
       </div>
