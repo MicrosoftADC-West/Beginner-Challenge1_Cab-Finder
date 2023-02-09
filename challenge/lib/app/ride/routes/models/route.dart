@@ -14,7 +14,7 @@ class Route {
     required this.destinationCoordLat,
   });
 
-  factory Route.fromJson(Map<String, dynamic> json) => Route(
+  factory Route.fromJson(Map<dynamic, dynamic> json) => Route(
         locationId: json["location_id"],
         locationDescription: json["location_description"],
         startCoordLong: json["start_coord_long"]?.toDouble(),

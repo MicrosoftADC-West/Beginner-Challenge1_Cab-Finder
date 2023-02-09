@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../components/app_bar.dart';
@@ -23,9 +24,19 @@ class RouteSelection extends StatelessWidget {
               children: <Widget>[
                 CoordinateInputForm(flow: flow),
                 const SizedBox(height: 24 + 24),
-                ElevatedButton(
-                  onPressed: () => flow.nextFromCoords(context),
-                  child: const Text("Next"),
+                StreamBuilder<bool>(
+                  stream: flow.loadingStream.stream,
+                  builder: (context, snapshot) {
+                    final loading = snapshot.data ?? false;
+                    return ElevatedButton(
+                      onPressed: () => flow.nextFromCoords(context),
+                      child: loading
+                          ? const CupertinoActivityIndicator(
+                              color: Colors.white,
+                            )
+                          : const Text("Next"),
+                    );
+                  },
                 ),
               ],
             ),

@@ -1,5 +1,13 @@
-import 'package:challenge/app/ride/services/services.dart';
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
+
+import '../../util/alert.util.dart';
+import '../../util/log.util.dart';
+import 'data/models/latlong.dart';
+import 'data/models/ride.dart';
+import 'data/repositories/rides.dart';
+import 'services/services.dart';
 
 RegExp coordsExp = RegExp(
     r"[0-9]([0-9])*(\.|)[0-9]([0-9])*,( *)[0-9]([0-9])*(\.|)[0-9]([0-9])*");
@@ -8,32 +16,38 @@ class RideFlow {
   late double eLat;
   late double eLong;
   final TextEditingController endCoordsController = TextEditingController();
+  final StreamController<bool> loadingStream =
+      StreamController<bool>.broadcast();
+
   late double sLat;
   late double sLong;
   final TextEditingController startCoordsController = TextEditingController();
 
+  late List<Ride> rides;
+
   void nextFromCoords(BuildContext context) {
     if (!coordsExp.hasMatch(startCoords) || !coordsExp.hasMatch(endCoords)) {
+      AlertUtil.showError("Invalid coordinates");
+      LogUtil.logError("Ride Flow", message: "Regex mismatch");
       return;
     }
 
-    final List<double> startCoordsFloat = startCoords
-        .split(",")
-        .map((e) => e.trim())
-        .map((e) => double.parse(e))
-        .toList();
-    sLat = startCoordsFloat[0];
-    sLong = startCoordsFloat[1];
+    loadingStream.add(true);
 
-    final List<double> endCoordsFloat = endCoords
-        .split(",")
-        .map((e) => e.trim())
-        .map((e) => double.parse(e))
-        .toList();
-    eLat = endCoordsFloat[0];
-    eLong = endCoordsFloat[1];
+    RidesRepository.getRides(
+      startLocation: LatLong.parse(startCoords),
+      endLocation: LatLong.parse(endCoords),
+      onError: (error) {
+        AlertUtil.showError(error);
+      },
+    ).then((value) {
+      loadingStream.add(false);
 
-    _goToRideServices(context);
+      if (value == null) return;
+
+      rides = value;
+      _goToRideServices(context);
+    });
   }
 
   String get startCoords => startCoordsController.text.trim();
