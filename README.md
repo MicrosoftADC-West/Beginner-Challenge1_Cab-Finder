@@ -1,4 +1,4 @@
-# Challenge Your Skills Learnathon
+## Microsoft ADC Skills Challenge
 # **Contoso Cheap Cab Finder**
 
 **Duration** : 120 mins
