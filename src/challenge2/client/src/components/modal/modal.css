@@ -1,0 +1,62 @@
+.modal {
+  position: fixed;
+  top: 0;
+  left: 260px;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+
+}
+
+.modal .modal-background {
+  background-color: var(--modal-background);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.modal .modal-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-height: 80%;
+  max-width: 600px;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 5px;
+  border: 1px solid var(--white);
+  transform: translate(-50%, -50%) scale(0.7, 0.7);
+  transition: all 0.2s ease;
+  overflow-y: scroll;
+  margin-top: 2em;
+}
+
+.modal .modal-card.show {
+  transform: translate(-50%, -50%) scale(1, 1);
+}
+
+.modal .modal-card::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+.modal .modal-card::-webkit-scrollbar-thumb {
+  background-color: #cccccc;
+  border-radius: 20px;
+}
+
+@media (max-width: 60rem) {
+  .modal {
+    left: 0;
+  }
+
+  .modal .modal-card {
+    width: 80%;
+  }
+}
+
+@media (max-width: 23rem) {
+  .modal .modal-card {
+    padding: 20px 10px;
+  }
+}
