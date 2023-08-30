@@ -7,7 +7,7 @@
 
 **Prerequisite** : Knowledge of an IDE with the web development workload.
 
-**Prerequisite Knowledge** : Any Programming Language, Any Web Framework API, Endpoint UI
+**Prerequisite Knowledge** : Any Programming Language; Any Web Framework API; Endpoint UI
 
 **Thematic Area** : Problem Solving and Web Development
 
@@ -17,17 +17,17 @@ Develop a web application that allows users to compare the best prices for rides
 
 **Functionalities:**
 
-The user should be able to enter a starting and destination location, and the app should display the prices for different ride services (e.g., Uber, InDrive, Taxi, Bolt) for that route.
+The user should be able to enter a starting and destination location; and the app should display the prices for different ride services (e.g.; Uber; InDrive; Taxi; Bolt) for that route.
 
-The prices per ride should be calculated based on the data given, and the app should display the current best price at the top.
+The prices per ride should be calculated based on the data given; and the app should display the current best price at the top.
 
-The user should be able to sort the prices by ride service, price, and estimated arrival time.
+The user should be able to sort the prices by ride service; price; and estimated arrival time.
 
 **Assumptions** :
 
-- There is a finite amount of available routes/location with indicated start coordinates and destination coordinates which is unique. For example, a user cannot book a ride in routes not represented in the locations table/document.
-- Ride services only provides their price per kilometer, so to calculate the price
-- The distance in kilometer (KM) between two coordinates (long and lat) is assumed to be based on [Haversine formula - Wikipedia,](https://en.wikipedia.org/wiki/Haversine_formula)you are expected to write a helper function that calculates this distance. See [algorithm - Calculate distance between two latitude-longitude points? (Haversine formula) - Stack Overflow.](https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula)
+- There is a finite amount of available routes/location with indicated start coordinates and destination coordinates which is unique. For example; a user cannot book a ride in routes not represented in the locations table/document.
+- Ride services only provides their price per kilometer; so to calculate the price
+- The distance in kilometer (KM) between two coordinates (long and lat) is assumed to be based on [Haversine formula - Wikipedia;](https://en.wikipedia.org/wiki/Haversine_formula)you are expected to write a helper function that calculates this distance. See [algorithm - Calculate distance between two latitude-longitude points? (Haversine formula) - Stack Overflow.](https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula)
 
 **Data** :
 
@@ -55,12 +55,12 @@ A "Locations" table with the following fields:
 A "Ride Services" table with the following fields:
 
 - rideservice\_id (primary key)
-- rideservice\_name (foreign key) (e.g., Uber, InDrive, Taxi, Bolt)
+- rideservice\_name (foreign key) (e.g.; Uber; InDrive; Taxi; Bolt)
 - priceperkm
 
 **Challenge 1:**
 
-You are given a dataset containing a list of route/locations data, booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the csv data provided.
+You are given a dataset containing a list of route/locations data; booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the csv data provided.
 
 Pre-requisites:
 
@@ -68,21 +68,21 @@ Write a helper method that takes each of the csv data provided and parses them i
 
 Task 1:
 
-Write a method that takes in a list of routes, ride services and booked rides then calculate the cost of each ride(price) based on the distance covered and return a list containing the details of each ride and their corresponding prices.
+Write a method that takes in a list of routes; ride services and booked rides then calculate the cost of each ride(price) based on the distance covered and return a list containing the details of each ride and their corresponding prices.
 
 Hint: _Use Haversine formular to calculate the distance between the start coordinates and the destination coordinates._
 
 Task 2:
 
-Leveraging your approach in Task 1, Write a method that takes in a list of routes, ride services, booked rides and computes the best price, the method should return an object containing the name of the ride service and the best price.
+Leveraging your approach in Task 1; Write a method that takes in a list of routes; ride services; booked rides and computes the best price; the method should return an object containing the name of the ride service and the best price.
 
 **Challenge 2:**
 
-You are given a dataset containing a list of route/locations data, booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the data format that best aligns with the database server you are most comfortable with.
+You are given a dataset containing a list of route/locations data; booked rides with corresponding ride service and a list of ride services with the amount they charge per kilometer. These datasets are available in different formats hence for this challenge you will be using the data format that best aligns with the database server you are most comfortable with.
 
 Pre-requisites:
 
-Using your preferred database server, migrate the provided data into your database.
+Using your preferred database server; migrate the provided data into your database.
 
 Task 1:
 
@@ -94,7 +94,7 @@ Create a restful API with the below API contracts
 
 The API contracts for the Ride Price Aggregator service would include the following endpoints:
 
-1. GET /rides - Retrieve a list of all available rides including prices between a given starting coordinates (long, lat) and destination coordinate (long, lat).
+1. GET /rides - Retrieve a list of all available rides including prices between a given starting coordinates (long; lat) and destination coordinate (long; lat).
 
 Query Parameters:
 
@@ -103,7 +103,7 @@ Query Parameters:
 
 Response:
 
-- 200 OK: Returns a list of rides, including the price, ride service, and estimated arrival time for each ride.
+- 200 OK: Returns a list of rides; including the price; ride service; and estimated arrival time for each ride.
 - 400 Bad Request: If the required query parameters are not provided.
 - 500 Internal Server Error: If there is an error fetching the data from the database or external API.
 
@@ -115,7 +115,7 @@ Path Parameters:
 
 Response:
 
-- 200 OK: Returns the details for the specified ride, including the price, ride service, and estimated arrival time.
+- 200 OK: Returns the details for the specified ride; including the price; ride service; and estimated arrival time.
 - 404 Not Found: If the specified ride ID does not exist.
 - 500 Internal Server Error: If there is an error fetching the data from the database.
 
@@ -125,7 +125,7 @@ Request Body:
 
 - start\_location (required): The starting location for the ride.
 - end\_location (required): The destination location for the ride.
-- ride\_service (required): The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+- ride\_service (required): The ride service (e.g.; Uber; Lyft; Taxi) for the ride.
 - estimated\_arrival\_time (required): The estimated arrival time for the ride.
 
 Response:
@@ -144,7 +144,7 @@ Request Body:
 
 - start\_location: The starting location for the ride.
 - end\_location: The destination location for the ride.
-- ride\_service: The ride service (e.g., Uber, Lyft, Taxi) for the ride.
+- ride\_service: The ride service (e.g.; Uber; Lyft; Taxi) for the ride.
 - estimated\_arrival\_time: The estimated arrival time for the ride.
 
 Response:

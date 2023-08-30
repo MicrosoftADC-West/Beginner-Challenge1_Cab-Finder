@@ -1,0 +1,21 @@
+location_id,location_description,start_coord_long,start_coord_lat,destination_coord_long,destination_coord_lat
+1,Trip from Agege to Eti-Osa,3.324722,6.605833,3.355556,6.545278
+2,Commute from Alimosho to Ibeju-Lekki,3.355278,6.595833,3.548056,6.462222
+3,Apapa to Ikorodu visit,3.375278,6.488889,3.492222,6.593889
+4,Island tour from Ifako-Ijaye to Ojo,3.450833,6.609722,3.366667,6.529167
+5,Ikeja to Amuwo-Odofin shopping,3.398056,6.524722,3.352778,6.548333
+6,Mainland to Badagry business trip,3.361944,6.560556,3.313611,6.498056
+7,Kosofe to Ajeromi-Ifelodun vacation,3.383333,6.516389,3.394444,6.538611
+8,Mushin to Surulere family visit,3.359722,6.529167,3.3875,6.521944
+9,Oshodi-Isolo to Mainland concert,3.372222,6.508889,3.379167,6.547222
+10,Shomolu to Lagos Island food tour,3.360833,6.520833,3.439444,6.468333
+11,Eti-Osa to Ikeja sightseeing,3.355556,6.545278,3.398056,6.524722
+12,Mainland to Agege medical appointment,3.379167,6.547222,3.324722,6.605833
+13,Surulere to Alimosho shopping spree,3.3875,6.521944,3.355278,6.595833
+14,Ojo to Apapa meeting,3.366667,6.529167,3.375278,6.488889
+15,Ajeromi-Ifelodun to Ifako-Ijaye school trip,3.394444,6.538611,3.450833,6.609722
+16,Amuwo-Odofin to Kosofe movie night,3.352778,6.548333,3.383333,6.516389
+17,Badagry to Mushin,3.313611,6.498056,3.359722,6.529167
+18,Ikorodu to Oshodi-Isolo,3.492222,6.593889,3.372222,6.508889
+19,Ibeju-Lekki to Shomolu beach day,3.548056,6.462222,3.360833,6.520833
+20,Epe to Eti-Osa adventure,3.395278,6.449722,3.355556, 6.545278
